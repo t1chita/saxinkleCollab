@@ -9,17 +9,8 @@ import UIKit
 
 
 class SpeciePageVC: UIViewController {
-    let speciePageView: SpeciePageView
-    let speciePageViewModel: SpeciePageViewModel
-    init(speciePageView: SpeciePageView, speciePageViewModel: SpeciePageViewModel) {
-        self.speciePageView = speciePageView
-        self.speciePageViewModel = speciePageViewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    let speciePageView = SpeciePageView()
+    let speciePageViewModel = SpeciePageViewModel()
     
     override func loadView() {
         view = speciePageView

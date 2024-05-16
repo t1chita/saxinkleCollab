@@ -18,6 +18,7 @@
 		2607351E2BF6B54E005AC69D /* PopulationPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607351D2BF6B54E005AC69D /* PopulationPageVC.swift */; };
 		260735202BF6B55E005AC69D /* WeatherPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607351F2BF6B55E005AC69D /* WeatherPageVC.swift */; };
 		260735222BF6B56E005AC69D /* AirQualityPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260735212BF6B56E005AC69D /* AirQualityPageVC.swift */; };
+		26877D852BF6C503006E1004 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26877D842BF6C503006E1004 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		2607351D2BF6B54E005AC69D /* PopulationPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationPageVC.swift; sourceTree = "<group>"; };
 		2607351F2BF6B55E005AC69D /* WeatherPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPageVC.swift; sourceTree = "<group>"; };
 		260735212BF6B56E005AC69D /* AirQualityPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityPageVC.swift; sourceTree = "<group>"; };
+		26877D842BF6C503006E1004 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				2607350F2BF6B0C9005AC69D /* Supporting */,
 				260735102BF6B0CC005AC69D /* App */,
+				26877D832BF6C4E4006E1004 /* TabBar */,
 				2607350E2BF6B0C7005AC69D /* Scenes */,
 				260735192BF6B4DF005AC69D /* Resources */,
 			);
@@ -162,6 +165,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		26877D832BF6C4E4006E1004 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				26877D842BF6C503006E1004 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,6 +249,7 @@
 				260735142BF6B429005AC69D /* SpeciePageVC.swift in Sources */,
 				2607351C2BF6B52F005AC69D /* SolarResourcePageVC.swift in Sources */,
 				260735182BF6B446005AC69D /* SpeciePageViewModel.swift in Sources */,
+				26877D852BF6C503006E1004 /* TabBarController.swift in Sources */,
 				260734F72BF6AED0005AC69D /* AppDelegate.swift in Sources */,
 				260735222BF6B56E005AC69D /* AirQualityPageVC.swift in Sources */,
 				260735202BF6B55E005AC69D /* WeatherPageVC.swift in Sources */,
