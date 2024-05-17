@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NetworkingService
 
 class SpeciePageView: UIView {
     //MARK: - UIComponents
