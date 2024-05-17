@@ -19,6 +19,9 @@
 		260735202BF6B55E005AC69D /* WeatherPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607351F2BF6B55E005AC69D /* WeatherPageVC.swift */; };
 		260735222BF6B56E005AC69D /* AirQualityPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260735212BF6B56E005AC69D /* AirQualityPageVC.swift */; };
 		26178E702BF6D80B00858EC9 /* NetworkingService in Frameworks */ = {isa = PBXBuildFile; productRef = 26178E6F2BF6D80B00858EC9 /* NetworkingService */; };
+		26178E732BF7A85400858EC9 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26178E722BF7A85400858EC9 /* City.swift */; };
+		26178E762BF7BFAC00858EC9 /* NatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26178E752BF7BFAC00858EC9 /* NatureCell.swift */; };
+		26178E792BF7C49700858EC9 /* ImageService in Frameworks */ = {isa = PBXBuildFile; productRef = 26178E782BF7C49700858EC9 /* ImageService */; };
 		26877D852BF6C503006E1004 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26877D842BF6C503006E1004 /* TabBarController.swift */; };
 		D0F4A0F12BF6DCD1001DE35A /* PopulationPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F4A0F02BF6DCD1001DE35A /* PopulationPageViewModel.swift */; };
 		D0F4A0F32BF6DCEA001DE35A /* PopulationPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F4A0F22BF6DCEA001DE35A /* PopulationPageView.swift */; };
@@ -38,6 +41,8 @@
 		2607351D2BF6B54E005AC69D /* PopulationPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationPageVC.swift; sourceTree = "<group>"; };
 		2607351F2BF6B55E005AC69D /* WeatherPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPageVC.swift; sourceTree = "<group>"; };
 		260735212BF6B56E005AC69D /* AirQualityPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityPageVC.swift; sourceTree = "<group>"; };
+		26178E722BF7A85400858EC9 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		26178E752BF7BFAC00858EC9 /* NatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatureCell.swift; sourceTree = "<group>"; };
 		26877D842BF6C503006E1004 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D0F4A0F02BF6DCD1001DE35A /* PopulationPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationPageViewModel.swift; sourceTree = "<group>"; };
 		D0F4A0F22BF6DCEA001DE35A /* PopulationPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationPageView.swift; sourceTree = "<group>"; };
@@ -48,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26178E792BF7C49700858EC9 /* ImageService in Frameworks */,
 				26178E702BF6D80B00858EC9 /* NetworkingService in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +108,8 @@
 		2607350C2BF6B0C1005AC69D /* SpeciePage */ = {
 			isa = PBXGroup;
 			children = (
+				26178E742BF7BF9700858EC9 /* NatureCell */,
+				26178E712BF7A83800858EC9 /* CityModel */,
 				260735132BF6B429005AC69D /* SpeciePageVC.swift */,
 				260735152BF6B43C005AC69D /* SpeciePageView.swift */,
 				260735172BF6B446005AC69D /* SpeciePageViewModel.swift */,
@@ -173,6 +181,22 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		26178E712BF7A83800858EC9 /* CityModel */ = {
+			isa = PBXGroup;
+			children = (
+				26178E722BF7A85400858EC9 /* City.swift */,
+			);
+			path = CityModel;
+			sourceTree = "<group>";
+		};
+		26178E742BF7BF9700858EC9 /* NatureCell */ = {
+			isa = PBXGroup;
+			children = (
+				26178E752BF7BFAC00858EC9 /* NatureCell.swift */,
+			);
+			path = NatureCell;
+			sourceTree = "<group>";
+		};
 		26877D832BF6C4E4006E1004 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +223,7 @@
 			name = TeamSaxinkleApp;
 			packageProductDependencies = (
 				26178E6F2BF6D80B00858EC9 /* NetworkingService */,
+				26178E782BF7C49700858EC9 /* ImageService */,
 			);
 			productName = TeamSaxinkleApp;
 			productReference = 260734F32BF6AED0005AC69D /* TeamSaxinkleApp.app */;
@@ -230,6 +255,7 @@
 			mainGroup = 260734EA2BF6AED0005AC69D;
 			packageReferences = (
 				260735232BF6B6C6005AC69D /* XCRemoteSwiftPackageReference "NetworkingService" */,
+				26178E772BF7C49700858EC9 /* XCRemoteSwiftPackageReference "ImageService" */,
 			);
 			productRefGroup = 260734F42BF6AED0005AC69D /* Products */;
 			projectDirPath = "";
@@ -263,11 +289,13 @@
 				26877D852BF6C503006E1004 /* TabBarController.swift in Sources */,
 				260734F72BF6AED0005AC69D /* AppDelegate.swift in Sources */,
 				260735222BF6B56E005AC69D /* AirQualityPageVC.swift in Sources */,
+				26178E762BF7BFAC00858EC9 /* NatureCell.swift in Sources */,
 				D0F4A0F32BF6DCEA001DE35A /* PopulationPageView.swift in Sources */,
 				260735202BF6B55E005AC69D /* WeatherPageVC.swift in Sources */,
 				260735162BF6B43C005AC69D /* SpeciePageView.swift in Sources */,
 				D0F4A0F12BF6DCD1001DE35A /* PopulationPageViewModel.swift in Sources */,
 				2607351E2BF6B54E005AC69D /* PopulationPageVC.swift in Sources */,
+				26178E732BF7A85400858EC9 /* City.swift in Sources */,
 				260734F92BF6AED0005AC69D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +519,14 @@
 				kind = branch;
 			};
 		};
+		26178E772BF7C49700858EC9 /* XCRemoteSwiftPackageReference "ImageService" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nuca01/ImageService";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -498,6 +534,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 260735232BF6B6C6005AC69D /* XCRemoteSwiftPackageReference "NetworkingService" */;
 			productName = NetworkingService;
+		};
+		26178E782BF7C49700858EC9 /* ImageService */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26178E772BF7C49700858EC9 /* XCRemoteSwiftPackageReference "ImageService" */;
+			productName = ImageService;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
