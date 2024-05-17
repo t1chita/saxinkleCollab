@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SolarResourcePageModel: Decodable {
+struct SolarResourcePageModel: Decodable, modelProtocol{
     var warnings: [String]
     var errors: [String]
     var outputs: SolarData
