@@ -22,7 +22,9 @@ class SolarResourcePageViewModel {
     private var delegate: SolarResourcePageViewModelDelegate?
     private var model: modelProtocol?
     private let urlString = "https://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=lbTrz5kfAud7PYhGhUOVsWaEMAMmm0o5s34sq581&address="
-    
+}
+
+extension SolarResourcePageViewModel: SolarResourcePageVCViewModelDelegate {
     //MARK: - lifeCycle
     func didLoad(delegate: SolarResourcePageViewModelDelegate) {
         self.delegate = delegate
