@@ -18,6 +18,14 @@ class SpeciePageView: UIView {
         return lbl
     }()
     
+    let natureTableView: UITableView = {
+        let tbv = UITableView()
+        tbv.separatorStyle = .none
+        tbv.translatesAutoresizingMaskIntoConstraints = false
+        tbv.register(NatureCell.self, forCellReuseIdentifier: NatureCell.identifier)
+        return tbv
+    }()
+    
     //MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,6 +40,7 @@ class SpeciePageView: UIView {
     private func setUp() {
         backgroundColor = .systemBackground
         setHeaderLabel()
+        setCountriesTableView()
     }
     
     private func setHeaderLabel() {
@@ -39,6 +48,10 @@ class SpeciePageView: UIView {
         setConstraintsToHeaderLabel()
     }
     
+    private func setCountriesTableView() {
+        addSubview(natureTableView)
+        setConstraintsToNatureTableView()
+    }
     //MARK: - Set Constrainst To UI Components
     private func setConstraintsToHeaderLabel() {
         NSLayoutConstraint.activate([
@@ -46,6 +59,15 @@ class SpeciePageView: UIView {
             headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             headerLabel.heightAnchor.constraint(equalToConstant: 30),
             headerLabel.widthAnchor.constraint(equalToConstant: 300),
+        ])
+    }
+    
+    private func setConstraintsToNatureTableView() {
+        NSLayoutConstraint.activate([
+            natureTableView.topAnchor.constraint(equalTo: topAnchor, constant: 50),
+            natureTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            natureTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            natureTableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100)
         ])
     }
 }

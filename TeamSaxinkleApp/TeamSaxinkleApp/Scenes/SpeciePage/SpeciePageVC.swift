@@ -23,14 +23,19 @@ class SpeciePageVC: UIViewController {
         super.viewDidLoad()
         setupSearchController()
         getData()
+        getDelegatesFromView()
     }
     
     
-    //MARK: Get Data From ViewModel
+    private func getDelegatesFromView() {
+        speciePageView.natureTableView.dataSource = self
+    }
     
+    //MARK: Get Data From ViewModel
     private func getData() {
         speciePageViewModel.didLoad()
     }
+    
     //MARK: setup Navigation SearchController
     private func setupSearchController() {
         searchController.searchResultsUpdater = self
@@ -45,8 +50,27 @@ class SpeciePageVC: UIViewController {
 }
 
 
+
+extension SpeciePageVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NatureCell.identifier, for: indexPath) as? NatureCell else { return UITableViewCell() }
+        
+        return cell
+    }
+    
+    
+}
+
+
+
 extension SpeciePageVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         
     }
 }
+
+
