@@ -13,7 +13,7 @@ struct City: Decodable {
     
     //MARK: Nested Structs
     struct CityResult: Decodable {
-        let id: Int
+        let id: Int?
     }
 }
 
@@ -24,20 +24,22 @@ struct NatureInfo: Decodable {
 
 
 struct NatureResults: Decodable {
-    let taxon: Taxon
+    let taxon: Taxon?
 }
 
 struct Taxon: Decodable {
-    let name: String
-    let defaultPhoto: DefaultPhoto
+    let name: String?
+    let defaultPhoto: DefaultPhoto?
+    let wikipediaUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case name
         case defaultPhoto = "default_photo"
+        case wikipediaUrl = "wikipedia_url"
     }
 }
 
 struct DefaultPhoto: Decodable {
-    let attribution: String
-    let url: String
+    let attribution: String?
+    let url: String?
 }

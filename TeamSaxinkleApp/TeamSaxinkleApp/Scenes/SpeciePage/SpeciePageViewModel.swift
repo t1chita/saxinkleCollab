@@ -8,15 +8,23 @@
 import Foundation
 import NetworkingService
 
-class SpeciePageViewModel {
+protocol ViewModelLoadDelegate: AnyObject {
+    func didLoad(with: String)
+}
+
+
+class SpeciePageViewModel: ViewModelLoadDelegate {
+    //MARK: Properties
     var cityID: Int = 0
-    var cityName: String = "Tbilisi"
+    var cityName: String = ""
     var natureArray: [NatureResults] = []
     
+    //MARK: Delegates
+    weak var reloadTableViewDelegate:  ReloadTableViewDelegate?
     
-    
-    func didLoad() {
-        fetchData { [weak self] success in
+    //MARK: Methods
+    func didLoad(with city: String) {
+        fetchData(cityName: city){ [weak self] success in
             if success {
                 self?.fetchSecondData()
             } else {
@@ -25,12 +33,13 @@ class SpeciePageViewModel {
         }
     }
     
-    private func fetchData(completion: @escaping (Bool) -> Void) {
+    //MARK: Child Methods
+    private func fetchData(cityName: String, completion: @escaping (Bool) -> Void) {
         let apiForCityID = "https://api.inaturalist.org/v1/places/autocomplete?q=\(cityName)"
         NetworkService.networkService.getData(urlString: apiForCityID) { [weak self] (result: Result<City,Error>) in
             switch result {
             case .success(let success):
-                self?.cityID = success.results[0].id
+                self?.cityID = success.results[0].id ?? 0
                 completion(true)
             case .failure(let failure):
                 print(failure.localizedDescription)
@@ -48,15 +57,8 @@ class SpeciePageViewModel {
             case .failure(let failure):
                 print(failure.localizedDescription)
             }
+            self?.reloadTableViewDelegate?.reloadData()
         }
     }
 }
 
-
-
-
-extension SpeciePageViewModel {
-    func updateSearchResults(for searchText: String?) {
-        
-    }
-}
