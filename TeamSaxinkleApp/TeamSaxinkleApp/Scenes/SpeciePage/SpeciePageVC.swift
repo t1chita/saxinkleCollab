@@ -41,7 +41,7 @@ class SpeciePageVC: UIViewController {
 //MARK: TableView DataSource Extensions
 extension SpeciePageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        speciePageViewModel.natureArray.count
+        speciePageViewModel.natureArrayCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

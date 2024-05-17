@@ -18,6 +18,10 @@ class SpeciePageViewModel: ViewModelLoadDelegate {
     var cityID: Int = 0
     var natureArray: [NatureResults] = []
     
+    var natureArrayCount: Int {
+        natureArray.count
+    }
+    
     //MARK: Delegates
     weak var reloadTableViewDelegate:  ReloadTableViewDelegate?
     

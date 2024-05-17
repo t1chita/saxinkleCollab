@@ -8,6 +8,7 @@
 import UIKit
 
 class SpeciePageView: UIView {
+    //TODO: spinningLoading🚨
     //MARK: - UIComponents
     private let searchCityBar: UISearchBar = {
         let srbar = UISearchBar()
