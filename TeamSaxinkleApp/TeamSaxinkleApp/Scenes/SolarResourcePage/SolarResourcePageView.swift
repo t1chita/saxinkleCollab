@@ -27,8 +27,9 @@ class SolarResourcePageView: UIView {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 20.0
-        stack.alignment = .leading
+        stack.alignment = .fill
         stack.distribution = .fill
+        stack.isUserInteractionEnabled = true
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -36,10 +37,10 @@ class SolarResourcePageView: UIView {
     private var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Search"
+        searchBar.isUserInteractionEnabled = true
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         //ხაზები რომ არ გამოჩნდეს
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        searchBar.barTintColor = UIColor(named: "Background Color")
         return searchBar
     }()
     
@@ -47,6 +48,7 @@ class SolarResourcePageView: UIView {
     init(delegate: SolarResourcePageViewDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -58,6 +60,7 @@ class SolarResourcePageView: UIView {
     
     //MARK: - Setup UI Components
     private func setupUI() {
+        backgroundColor = .white
         setWholeStackView()
         setSearchBar()
         setAverageDNI()
@@ -69,7 +72,7 @@ class SolarResourcePageView: UIView {
     }
     
     private func setSearchBar() {
-        wholeStackView.addArrangedSubview(averageDNI)
+        wholeStackView.addArrangedSubview(searchBar)
         searchBar.delegate = self
         setConstraintsToSearchBar()
     }
@@ -80,19 +83,21 @@ class SolarResourcePageView: UIView {
     //MARK: - Set Constraints To UI Components
     private func setConstraintsToWholeStackView() {
         NSLayoutConstraint.activate([
-            wholeStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            wholeStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            wholeStackView.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            wholeStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            wholeStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            wholeStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
     }
     
     private func setConstraintsToSearchBar() {
         NSLayoutConstraint.activate([
-            searchBar.heightAnchor.constraint(equalToConstant: 20)
+            searchBar.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
 }
 
-extension SolarResourcePageView: SolarResourcePageViewModelDelegate {
+extension SolarResourcePageView: SolarResourcePageVCViewDelegate {
     
     func dataFetched(data: SolarData) {
         averageDNI.text = String(data.avg_dni.annual)
@@ -105,13 +110,16 @@ extension SolarResourcePageView: SolarResourcePageViewModelDelegate {
 }
 
 extension SolarResourcePageView: UISearchBarDelegate {
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-    }
-
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         delegate.fetchData(with: searchBar.text ?? "")
     }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
