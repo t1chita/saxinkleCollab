@@ -42,7 +42,6 @@ class SpeciePageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -99,6 +98,15 @@ class SpeciePageView: UIView {
             natureTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             natureTableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100)
         ])
+    }
+}
+
+//MARK: Reload Data For ViewModel
+extension SpeciePageView: ReloadTableViewDelegate {
+    func reloadData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.natureTableView.reloadData()
+        }
     }
 }
 

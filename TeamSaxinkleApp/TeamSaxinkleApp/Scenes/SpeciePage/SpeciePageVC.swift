@@ -28,22 +28,13 @@ class SpeciePageVC: UIViewController {
     
     //MARK: Get Delegates From ViewModel And View
     private func getDelegatesFromViewAndViewModel() {
+        speciePageViewModel.reloadTableViewDelegate = speciePageView
         speciePageView.natureTableView.dataSource = self
-        speciePageViewModel.reloadTableViewDelegate = self
     }
     
     //MARK: Get Data From ViewModel
     private func getDelegatesFromViewToViewModel() {
         speciePageView.viewModelLoadDelegate = speciePageViewModel
-    }
-}
-
-//MARK: Reload Data For ViewModel
-extension SpeciePageVC: ReloadTableViewDelegate {
-    func reloadData() {
-        DispatchQueue.main.async { [weak self] in
-            self?.speciePageView.natureTableView.reloadData()
-        }
     }
 }
 
@@ -61,7 +52,6 @@ extension SpeciePageVC: UITableViewDataSource {
                        wikipediaLink: speciePageViewModel.natureArray[indexPath.row].taxon?.wikipediaUrl)
         return cell
     }
-
 }
 
 

@@ -16,7 +16,6 @@ protocol ViewModelLoadDelegate: AnyObject {
 class SpeciePageViewModel: ViewModelLoadDelegate {
     //MARK: Properties
     var cityID: Int = 0
-    var cityName: String = ""
     var natureArray: [NatureResults] = []
     
     //MARK: Delegates
