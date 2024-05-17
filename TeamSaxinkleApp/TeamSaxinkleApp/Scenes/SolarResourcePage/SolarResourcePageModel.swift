@@ -31,6 +31,7 @@ struct MonthlyData: Decodable {
     var apr: Double
     var may: Double
     var jun: Double
+    var jul: Double
     var aug: Double
     var sep: Double
     var oct: Double
