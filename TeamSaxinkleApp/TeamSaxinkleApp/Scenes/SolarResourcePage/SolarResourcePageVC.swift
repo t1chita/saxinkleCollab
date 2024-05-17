@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+//start working
 class SolarResourcePageVC: UIViewController {
 
     override func viewDidLoad() {
