@@ -9,14 +9,18 @@ import Foundation
 import NetworkingService
 
 protocol SolarResourcePageViewModelDelegate {
-    func dataFetched()
+    func dataFetched(data: SolarData)
     func dataDidNotFetch()
+}
+
+protocol modelProtocol {
+    var outputs: SolarData {get}
 }
 
 class SolarResourcePageViewModel {
     //MARK: - Properties
     private var delegate: SolarResourcePageViewModelDelegate?
-    private var model: SolarResourcePageModel?
+    private var model: modelProtocol?
     private let urlString = "https://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=lbTrz5kfAud7PYhGhUOVsWaEMAMmm0o5s34sq581&address="
     
     //MARK: - lifeCycle
@@ -33,7 +37,7 @@ class SolarResourcePageViewModel {
                 switch result {
                 case .success(let success):
                     self.model = success
-                    self.delegate?.dataFetched()
+                    self.delegate?.dataFetched(data: self.model!.outputs)
                 case .failure(let failure):
                     //ერორის პრინტვა
                     print(failure.localizedDescription)
