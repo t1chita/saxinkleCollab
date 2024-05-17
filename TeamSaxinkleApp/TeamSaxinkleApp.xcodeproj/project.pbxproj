@@ -20,6 +20,7 @@
 		260735222BF6B56E005AC69D /* AirQualityPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260735212BF6B56E005AC69D /* AirQualityPageVC.swift */; };
 		26178E702BF6D80B00858EC9 /* NetworkingService in Frameworks */ = {isa = PBXBuildFile; productRef = 26178E6F2BF6D80B00858EC9 /* NetworkingService */; };
 		26877D852BF6C503006E1004 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26877D842BF6C503006E1004 /* TabBarController.swift */; };
+		87ED3C4D2BF777460089B01C /* SolarResourcePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87ED3C4C2BF777460089B01C /* SolarResourcePageModel.swift */; };
 		D0F4A0F12BF6DCD1001DE35A /* PopulationPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F4A0F02BF6DCD1001DE35A /* PopulationPageViewModel.swift */; };
 		D0F4A0F32BF6DCEA001DE35A /* PopulationPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F4A0F22BF6DCEA001DE35A /* PopulationPageView.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		2607351F2BF6B55E005AC69D /* WeatherPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPageVC.swift; sourceTree = "<group>"; };
 		260735212BF6B56E005AC69D /* AirQualityPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityPageVC.swift; sourceTree = "<group>"; };
 		26877D842BF6C503006E1004 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		87ED3C4C2BF777460089B01C /* SolarResourcePageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourcePageModel.swift; sourceTree = "<group>"; };
 		D0F4A0F02BF6DCD1001DE35A /* PopulationPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationPageViewModel.swift; sourceTree = "<group>"; };
 		D0F4A0F22BF6DCEA001DE35A /* PopulationPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				2607351B2BF6B52F005AC69D /* SolarResourcePageVC.swift */,
+				87ED3C4C2BF777460089B01C /* SolarResourcePageModel.swift */,
 			);
 			path = SolarResourcePage;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			files = (
 				260735142BF6B429005AC69D /* SpeciePageVC.swift in Sources */,
 				2607351C2BF6B52F005AC69D /* SolarResourcePageVC.swift in Sources */,
+				87ED3C4D2BF777460089B01C /* SolarResourcePageModel.swift in Sources */,
 				260735182BF6B446005AC69D /* SpeciePageViewModel.swift in Sources */,
 				26877D852BF6C503006E1004 /* TabBarController.swift in Sources */,
 				260734F72BF6AED0005AC69D /* AppDelegate.swift in Sources */,
