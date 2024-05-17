@@ -158,9 +158,9 @@
 		260735122BF6B3DF005AC69D /* PopulationPage */ = {
 			isa = PBXGroup;
 			children = (
+				D0F4A0F22BF6DCEA001DE35A /* PopulationPageView.swift */,
 				2607351D2BF6B54E005AC69D /* PopulationPageVC.swift */,
 				D0F4A0F02BF6DCD1001DE35A /* PopulationPageViewModel.swift */,
-				D0F4A0F22BF6DCEA001DE35A /* PopulationPageView.swift */,
 			);
 			path = PopulationPage;
 			sourceTree = "<group>";
