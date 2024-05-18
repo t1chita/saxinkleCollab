@@ -17,7 +17,7 @@ protocol modelProtocol {
     var outputs: SolarData {get}
 }
 
-class SolarResourcePageViewModel {
+final class SolarResourcePageViewModel {
     //MARK: - Properties
     private var delegate: SolarResourcePageViewModelDelegate?
     private var model: modelProtocol?
