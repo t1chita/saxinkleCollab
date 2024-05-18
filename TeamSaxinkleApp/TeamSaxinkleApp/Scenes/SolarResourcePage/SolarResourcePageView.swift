@@ -14,7 +14,8 @@ protocol SolarResourcePageViewDelegate {
 protocol PresentableVC: SolarResourcePageViewDelegate {
     func presentView(of: SolarInformation)
 }
-class SolarResourcePageView: UIView {
+
+final class SolarResourcePageView: UIView {
     //MARK: - Properties
     private var delegate: PresentableVC
     
@@ -97,8 +98,6 @@ class SolarResourcePageView: UIView {
         solarCollectionView.dataSource = self
         solarCollectionView.delegate = self
     }
-
-    //MARK: - Helper Methods
     
     //MARK: - Set Constraints To UI Components
     private func setConstraintsToWholeStackView() {

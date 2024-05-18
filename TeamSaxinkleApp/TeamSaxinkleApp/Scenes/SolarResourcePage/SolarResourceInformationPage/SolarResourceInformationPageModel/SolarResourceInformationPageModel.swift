@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - SolarInformation
 enum SolarInformation {
     case DNI
     case GHI
@@ -14,9 +15,11 @@ enum SolarInformation {
 }
 
 struct SolarResourceInformationModel {
+    //MARK: - Properties
     var information: String
     var imageString: String
     
+    //MARK: - Initializators
     init(solarInformation: SolarInformation) {
         switch solarInformation {
         case .DNI:

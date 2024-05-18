@@ -8,6 +8,7 @@
 import UIKit
 
 final class SolarResourceInformationPageView: UIView, SolarResourceInformationPageVCDelegate {
+    //MARK: - Properties
     private var information: SolarResourceInformationModel
     
     private var imageView: UIImageView = {

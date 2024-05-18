@@ -16,7 +16,7 @@ protocol SolarResourcePageVCViewDelegate: UIView, SolarResourcePageViewModelDele
     
 }
 
-class SolarResourcePageVC: UIViewController {
+final class SolarResourcePageVC: UIViewController {
     //MARK: - Properties
     var solarResourceView: SolarResourcePageVCViewDelegate?
     var solarResourceViewModel: SolarResourcePageVCViewModelDelegate?

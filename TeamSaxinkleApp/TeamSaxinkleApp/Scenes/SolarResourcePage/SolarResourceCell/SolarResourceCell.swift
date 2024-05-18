@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SolarResourceCell: UICollectionViewCell {
+final class SolarResourceCell: UICollectionViewCell {
     //MARK: - Properties
     static let identifier = "SolarResourceCell"
     
