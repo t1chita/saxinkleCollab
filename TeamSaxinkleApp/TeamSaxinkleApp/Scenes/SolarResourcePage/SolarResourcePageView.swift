@@ -157,6 +157,7 @@ extension SolarResourcePageView: SolarResourcePageVCViewDelegate {
         spinningCircleView.isHidden = true
         //რათა collectionView-მ იცოდეს სიგანე რა აქვს
         wholeStackViewBottomConstraint?.isActive = true
+        searchBar.searchTextField.layer.borderColor = UIColor.clear.cgColor
         setLabel()
         setSolarCollectionView()
         self.data = data
