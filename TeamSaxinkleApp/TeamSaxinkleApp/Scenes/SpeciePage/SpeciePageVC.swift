@@ -7,10 +7,11 @@
 
 import UIKit
 
+protocol ReloadTableViewDelegate: AnyObject {
+    func reloadData()
+}
 
 class SpeciePageVC: UIViewController {
-    //MARK: UIComponents-
-    let searchController = UISearchController(searchResultsController: nil)
     //MARK: Properties-
     let speciePageView = SpeciePageView()
     let speciePageViewModel = SpeciePageViewModel()
@@ -21,55 +22,35 @@ class SpeciePageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSearchController()
-        getData()
-        getDelegatesFromView()
+        getDelegatesFromViewToViewModel()
+        getDelegatesFromViewAndViewModel()
     }
     
-    
-    private func getDelegatesFromView() {
+    //MARK: Get Delegates From ViewModel And View
+    private func getDelegatesFromViewAndViewModel() {
+        speciePageViewModel.reloadTableViewDelegate = speciePageView
         speciePageView.natureTableView.dataSource = self
     }
     
     //MARK: Get Data From ViewModel
-    private func getData() {
-        speciePageViewModel.didLoad()
-    }
-    
-    //MARK: setup Navigation SearchController
-    private func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Search City"
-        
-        navigationItem.searchController = searchController
-        definesPresentationContext = false
-        navigationItem.hidesSearchBarWhenScrolling = false
+    private func getDelegatesFromViewToViewModel() {
+        speciePageView.viewModelLoadDelegate = speciePageViewModel
     }
 }
 
-
-
+//MARK: TableView DataSource Extensions
 extension SpeciePageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        speciePageViewModel.natureArrayCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NatureCell.identifier, for: indexPath) as? NatureCell else { return UITableViewCell() }
-        
+        cell.configure(imageUrl: speciePageViewModel.natureArray[indexPath.row].taxon?.defaultPhoto?.url,
+                       objectName: speciePageViewModel.natureArray[indexPath.row].taxon?.name,
+                       discovererName: speciePageViewModel.natureArray[indexPath.row].taxon?.defaultPhoto?.attribution,
+                       wikipediaLink: speciePageViewModel.natureArray[indexPath.row].taxon?.wikipediaUrl)
         return cell
-    }
-    
-    
-}
-
-
-
-extension SpeciePageVC: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        
     }
 }
 

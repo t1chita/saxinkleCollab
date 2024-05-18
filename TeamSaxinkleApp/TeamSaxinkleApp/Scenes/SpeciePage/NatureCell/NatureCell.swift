@@ -26,7 +26,7 @@ class NatureCell: UITableViewCell {
         let iv = UIImageView()
         iv.clipsToBounds = true
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.layer.cornerRadius = 3
+        iv.layer.cornerRadius = 30
         iv.image = .airQuality
         return iv
     }()
@@ -34,8 +34,7 @@ class NatureCell: UITableViewCell {
     private let nameOfObjectLabel: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.text = "luka chitashvსდასდასდსადასდასდასდასდასდსადასდასდსადასდსდსადასდასდსადასდასადili"
-        lbl.font = UIFont.systemFont(ofSize: 8, weight: .regular)
+        lbl.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         lbl.textAlignment = .center
         lbl.textColor = .label
         lbl.textAlignment = .left
@@ -46,8 +45,7 @@ class NatureCell: UITableViewCell {
     private let nameOfDiscovererLabel: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.text = "temur cdasdsadasdasdasdasdasdsadsadsadsadsadsadasdahitashvili"
-        lbl.font = UIFont.systemFont(ofSize: 8, weight: .regular)
+        lbl.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         lbl.textAlignment = .center
         lbl.textColor = .label
         lbl.textAlignment = .left
@@ -58,8 +56,7 @@ class NatureCell: UITableViewCell {
     private let wikipediaLinkLabel: UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.text = "url.dodasdasdasdasdsadsadasdasdasdasdadt.com"
-        lbl.font = UIFont.systemFont(ofSize: 8, weight: .regular)
+        lbl.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         lbl.textAlignment = .center
         lbl.textColor = .label
         lbl.textAlignment = .left
@@ -76,14 +73,15 @@ class NatureCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     //MARK: Configuration
-    func configure(image: String, objectName: String, discovererName: String, wikipediaLink: String) {
-        ImageService.imageService.loadImageFromURL(image) { [weak self] image in
+    func configure(imageUrl: String?, objectName: String?, discovererName: String?, wikipediaLink: String?) {
+        ImageService.imageService.loadImageFromURL(imageUrl ?? "") { [weak self] image in
             self?.image.image = image
         }
         nameOfObjectLabel.text = objectName
         nameOfDiscovererLabel.text = discovererName
         wikipediaLinkLabel.text = wikipediaLink
     }
+    
     //MARK: - Setup UI Components
     private func setUp() {
         setRectangleView()
@@ -91,6 +89,7 @@ class NatureCell: UITableViewCell {
         setNameOfObjectLabel()
         setNameOfDiscovererLabel()
         setWikipediaLinkLabel()
+        selectionStyle = .none
     }
     
     private func setRectangleView() {
@@ -134,9 +133,10 @@ class NatureCell: UITableViewCell {
             image.heightAnchor.constraint(equalToConstant: 80),
             image.widthAnchor.constraint(equalToConstant: 80),
             image.topAnchor.constraint(equalTo: rectangleView.topAnchor, constant: 10),
-            image.leadingAnchor.constraint(equalTo: rectangleView.leadingAnchor),
+            image.leadingAnchor.constraint(equalTo: rectangleView.leadingAnchor, constant: 10),
         ])
     }
+    
     private func setConstraintsToNameOfObjectLabel() {
         NSLayoutConstraint.activate([
             nameOfObjectLabel.trailingAnchor.constraint(equalTo: rectangleView.trailingAnchor),
