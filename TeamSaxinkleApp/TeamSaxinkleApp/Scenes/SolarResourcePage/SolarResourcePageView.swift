@@ -21,12 +21,16 @@ final class SolarResourcePageView: UIView {
     
     private var data: SolarData?
     
-    private var label: UILabel = {
-        let label = UILabel()
+    private var spinningCircleView: SpinningCircleView = {
+        let spView = SpinningCircleView()
+        spView.isHidden = true
+        spView.translatesAutoresizingMaskIntoConstraints = false
+        return spView
+    }()
+    
+    private var label: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Click On Boxes For Information"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
         return label
     }()
     
@@ -89,6 +93,7 @@ final class SolarResourcePageView: UIView {
         backgroundColor = .systemGray5
         setWholeStackView()
         setSearchBar()
+        setSpinningCircleView()
     }
     
     private func setWholeStackView() {
@@ -112,6 +117,10 @@ final class SolarResourcePageView: UIView {
         wholeStackView.addArrangedSubview(label)
     }
 
+    private func setSpinningCircleView() {
+        addSubview(spinningCircleView)
+        setConstraintsToSpinningCircleView()
+    }
     //MARK: - Helper Methods
     
     //MARK: - Set Constraints To UI Components
@@ -129,6 +138,15 @@ final class SolarResourcePageView: UIView {
             searchBar.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
+    
+    private func setConstraintsToSpinningCircleView() {
+        NSLayoutConstraint.activate([
+            spinningCircleView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinningCircleView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            spinningCircleView.widthAnchor.constraint(equalToConstant: 56),
+            spinningCircleView.heightAnchor.constraint(equalToConstant: 56),
+        ])
+    }
 
 }
 
@@ -136,6 +154,7 @@ final class SolarResourcePageView: UIView {
 extension SolarResourcePageView: SolarResourcePageVCViewDelegate {
     
     func dataFetched(data: SolarData) {
+        spinningCircleView.isHidden = true
         //რათა collectionView-მ იცოდეს სიგანე რა აქვს
         wholeStackViewBottomConstraint?.isActive = true
         setLabel()
@@ -145,8 +164,10 @@ extension SolarResourcePageView: SolarResourcePageVCViewDelegate {
     }
     
     func dataDidNotFetch() {
+        self.spinningCircleView.isHidden = true
         //რათა search bar იყოს ზევით
         wholeStackViewBottomConstraint?.isActive = false
+        searchBar.searchTextField.layer.borderColor = UIColor.red.cgColor
         solarCollectionView.removeFromSuperview()
         label.removeFromSuperview()
         wholeStackView.layoutIfNeeded()
@@ -158,6 +179,10 @@ extension SolarResourcePageView: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         if let text = searchBar.text, text != "" {
+            DispatchQueue.main.async {
+                self.spinningCircleView.isHidden = false
+                self.spinningCircleView.animate()
+            }
             delegate.fetchData(with: text)
         }
         searchBar.resignFirstResponder()
