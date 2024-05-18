@@ -6,4 +6,62 @@
 //
 
 import Foundation
+import NetworkingService
 
+// MARK: - Model
+
+struct TotalPopulation: Codable {
+    let date: String
+    let population: Int
+}
+
+struct TotalPopulations: Codable {
+    let totalPopulation: [TotalPopulation]
+
+    enum CodingKeys: String, CodingKey {
+        case totalPopulation = "total_population"
+    }
+}
+
+class PopulationPageViewModel {
+    
+    // MARK: - Properties
+    
+    private var networkService = NetworkService.networkService
+    var populationData: ((String, String) -> Void)?
+    var onError: ((String) -> Void)?
+    var populationArray: [TotalPopulation] = []
+    
+    // MARK: - Fetch Population Func
+    
+    func fetchPopulation(for country: String) {
+        let formattedCountry = country.capitalized
+        let urlString = "https://d6wn6bmjj722w.population.io:443/1.0/population/\(formattedCountry)/today-and-tomorrow/"
+        
+        networkService.getData(urlString: urlString) { [weak self] (result: Result<TotalPopulations, Error>) in
+            switch result {
+            case .success(let data):
+                self?.populationArray = data.totalPopulation
+                self?.updatePopulationData()
+            case .failure(let error):
+                print("Failed to fetch data: \(error)")
+                self?.onError?("Wrong wrong")
+            }
+        }
+    }
+
+    
+    // MARK: - Update Information
+    
+    private func updatePopulationData() {
+        guard populationArray.count >= 2 else {
+            populationData?("No data", "No data")
+            return
+        }
+        
+        let todayPopulation = populationArray[0]
+        let tomorrowPopulation = populationArray[1]
+        
+        populationData?("Population: \(todayPopulation.population)", "Population: \(tomorrowPopulation.population)")
+    }
+}
