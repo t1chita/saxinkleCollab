@@ -9,18 +9,22 @@ import UIKit
 
 class SpeciePageView: UIView {
     //TODO: spinningLoading🚨
+    let spinningCircleView: SpinningCircleView = {
+        let spView = SpinningCircleView()
+        spView.isHidden = true
+        spView.translatesAutoresizingMaskIntoConstraints = false
+        return spView
+    }()
     //MARK: - UIComponents
     private let searchCityBar: CustomSearchBar = {
         let srbar = CustomSearchBar()
         return srbar
     }()
     
-    private let headerLabel: UILabel = {
-        let lbl = UILabel ()
+    private let headerLabel: CustomLabel = {
+        let lbl = CustomLabel ()
         lbl.text = "Popular Species In Searched Area"
-        lbl.textColor = .label
-        lbl.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.font = UIFont.systemFont(ofSize: 16)
         return lbl
     }()
     
@@ -51,6 +55,7 @@ class SpeciePageView: UIView {
         setsearchCityBar()
         setHeaderLabel()
         setCountriesTableView()
+        setSpinningCircleView()
         searchCityBar.delegate = self
     }
     
@@ -67,6 +72,11 @@ class SpeciePageView: UIView {
     private func setCountriesTableView() {
         addSubview(natureTableView)
         setConstraintsToNatureTableView()
+    }
+    
+    private func setSpinningCircleView() {
+        addSubview(spinningCircleView)
+        setConstraintsToSpinningCircleView()
     }
     
     //MARK: - Set Constrainst To UI Components
@@ -88,6 +98,15 @@ class SpeciePageView: UIView {
         ])
     }
 
+    private func setConstraintsToSpinningCircleView() {
+        NSLayoutConstraint.activate([
+            spinningCircleView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinningCircleView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            spinningCircleView.widthAnchor.constraint(equalToConstant: 56),
+            spinningCircleView.heightAnchor.constraint(equalToConstant: 56),
+        ])
+    }
+    
     private func setConstraintsToNatureTableView() {
         NSLayoutConstraint.activate([
             natureTableView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 10),

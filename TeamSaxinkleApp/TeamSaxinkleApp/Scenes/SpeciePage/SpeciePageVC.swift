@@ -11,6 +11,11 @@ protocol ReloadTableViewDelegate: AnyObject {
     func reloadData()
 }
 
+protocol SpinningCircleViewDelegate: AnyObject {
+    func animateSpinningCircle()
+    func stopAnimatingSpinningCircle()
+}
+
 class SpeciePageVC: UIViewController {
     //MARK: Properties-
     let speciePageView = SpeciePageView()
@@ -29,6 +34,7 @@ class SpeciePageVC: UIViewController {
     //MARK: Get Delegates From ViewModel And View
     private func getDelegatesFromViewAndViewModel() {
         speciePageViewModel.reloadTableViewDelegate = speciePageView
+        speciePageViewModel.spinningCircleViewDelegate = self
         speciePageView.natureTableView.dataSource = self
     }
     
@@ -37,6 +43,19 @@ class SpeciePageVC: UIViewController {
         speciePageView.viewModelLoadDelegate = speciePageViewModel
     }
 }
+
+
+extension SpeciePageVC: SpinningCircleViewDelegate {
+    func animateSpinningCircle() {
+        speciePageView.spinningCircleView.animate()
+        speciePageView.spinningCircleView.isHidden = false
+    }
+    
+    func stopAnimatingSpinningCircle() {
+        speciePageView.spinningCircleView.isHidden = true
+    }
+}
+
 
 //MARK: TableView DataSource Extensions
 extension SpeciePageVC: UITableViewDataSource {
