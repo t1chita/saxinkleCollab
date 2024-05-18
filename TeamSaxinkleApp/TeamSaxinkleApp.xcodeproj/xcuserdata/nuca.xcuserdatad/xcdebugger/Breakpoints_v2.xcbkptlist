@@ -14,8 +14,8 @@
             filePath = "TeamSaxinkleApp/Scenes/SolarResourcePage/SolarResourcePageView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "setupUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "TeamSaxinkleApp/Scenes/SolarResourcePage/SolarResourcePageView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "TeamSaxinkleApp/Scenes/SolarResourcePage/SolarResourcePageView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>

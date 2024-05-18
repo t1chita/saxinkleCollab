@@ -43,10 +43,10 @@ final class SolarResourceCell: UICollectionViewCell {
     }
     
     private func setContentView() {
-        contentView.backgroundColor = .label.withAlphaComponent(0.1)
+        contentView.backgroundColor = .systemOrange.withAlphaComponent(0.1)
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 20
-        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderColor = UIColor.systemOrange.cgColor
         contentView.layer.borderWidth = 2
     }
     

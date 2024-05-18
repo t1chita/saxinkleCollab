@@ -21,9 +21,18 @@ final class SolarResourcePageView: UIView {
     
     private var data: SolarData?
     
+    private var label: UILabel = {
+        let label = UILabel()
+        label.text = "Click On Boxes For Information"
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        return label
+    }()
+    
     private var solarCollectionView: UICollectionView = {
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
-        collectionViewFlowLayout.scrollDirection = .horizontal
+        collectionViewFlowLayout.scrollDirection = .vertical
         collectionViewFlowLayout.minimumLineSpacing = 10
         collectionViewFlowLayout.minimumInteritemSpacing = 10
         collectionViewFlowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -77,7 +86,7 @@ final class SolarResourcePageView: UIView {
     
     //MARK: - Setup UI Components
     private func setupUI() {
-        backgroundColor = .systemBackground
+        backgroundColor = .systemGray5
         setWholeStackView()
         setSearchBar()
     }
@@ -99,11 +108,17 @@ final class SolarResourcePageView: UIView {
         solarCollectionView.delegate = self
     }
     
+    private func setLabel() {
+        wholeStackView.addArrangedSubview(label)
+    }
+
+    //MARK: - Helper Methods
+    
     //MARK: - Set Constraints To UI Components
     private func setConstraintsToWholeStackView() {
         wholeStackViewBottomConstraint = wholeStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         NSLayoutConstraint.activate([
-            wholeStackView.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            wholeStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             wholeStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             wholeStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
@@ -123,6 +138,7 @@ extension SolarResourcePageView: SolarResourcePageVCViewDelegate {
     func dataFetched(data: SolarData) {
         //რათა collectionView-მ იცოდეს სიგანე რა აქვს
         wholeStackViewBottomConstraint?.isActive = true
+        setLabel()
         setSolarCollectionView()
         self.data = data
         solarCollectionView.reloadData()
@@ -132,6 +148,7 @@ extension SolarResourcePageView: SolarResourcePageVCViewDelegate {
         //რათა search bar იყოს ზევით
         wholeStackViewBottomConstraint?.isActive = false
         solarCollectionView.removeFromSuperview()
+        label.removeFromSuperview()
         wholeStackView.layoutIfNeeded()
     }
 }

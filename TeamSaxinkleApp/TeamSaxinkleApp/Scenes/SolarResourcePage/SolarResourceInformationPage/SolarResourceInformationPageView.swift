@@ -76,10 +76,10 @@ final class SolarResourceInformationPageView: UIView, SolarResourceInformationPa
     //MARK: - Set Constraints To UI Components
     private func setConstraintsToWholeStackView() {
         NSLayoutConstraint.activate([
-            wholeStackView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            wholeStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            wholeStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             wholeStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             wholeStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            wholeStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
     }
     
