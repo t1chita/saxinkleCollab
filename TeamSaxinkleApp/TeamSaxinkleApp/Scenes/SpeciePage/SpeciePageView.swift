@@ -8,7 +8,6 @@
 import UIKit
 
 class SpeciePageView: UIView {
-    //TODO: spinningLoading🚨
     let spinningCircleView: SpinningCircleView = {
         let spView = SpinningCircleView()
         spView.isHidden = true
@@ -112,7 +111,7 @@ class SpeciePageView: UIView {
             natureTableView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 10),
             natureTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             natureTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            natureTableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100)
+            natureTableView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }

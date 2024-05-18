@@ -22,6 +22,7 @@
 		26178E732BF7A85400858EC9 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26178E722BF7A85400858EC9 /* City.swift */; };
 		26178E762BF7BFAC00858EC9 /* NatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26178E752BF7BFAC00858EC9 /* NatureCell.swift */; };
 		26178E792BF7C49700858EC9 /* ImageService in Frameworks */ = {isa = PBXBuildFile; productRef = 26178E782BF7C49700858EC9 /* ImageService */; };
+		265DB8D62BF947E40020968C /* PopulationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265DB8D42BF947E40020968C /* PopulationModal.swift */; };
 		2672833A2BF9010A00D7348F /* SpinningCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267283392BF9010A00D7348F /* SpinningCircleView.swift */; };
 		26877D852BF6C503006E1004 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26877D842BF6C503006E1004 /* TabBarController.swift */; };
 		87ED3C4D2BF777460089B01C /* SolarResourcePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87ED3C4C2BF777460089B01C /* SolarResourcePageModel.swift */; };
@@ -61,6 +62,7 @@
 		260735212BF6B56E005AC69D /* AirQualityPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityPageVC.swift; sourceTree = "<group>"; };
 		26178E722BF7A85400858EC9 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		26178E752BF7BFAC00858EC9 /* NatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatureCell.swift; sourceTree = "<group>"; };
+		265DB8D42BF947E40020968C /* PopulationModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopulationModal.swift; sourceTree = "<group>"; };
 		267283392BF9010A00D7348F /* SpinningCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningCircleView.swift; sourceTree = "<group>"; };
 		26877D842BF6C503006E1004 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		87ED3C4C2BF777460089B01C /* SolarResourcePageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourcePageModel.swift; sourceTree = "<group>"; };
@@ -142,7 +144,7 @@
 		2607350B2BF6B0BE005AC69D /* WeatherPage */ = {
 			isa = PBXGroup;
 			children = (
-				94BC91862BF82F4D00CE5D86 /* Cosntants */,
+				94BC91862BF82F4D00CE5D86 /* Utilities */,
 				94BC91842BF82EDC00CE5D86 /* WeatherPageCell */,
 				94BFD4CF2BF7E73C00098C90 /* WeatherPageView.swift */,
 				2607351F2BF6B55E005AC69D /* WeatherPageVC.swift */,
@@ -213,6 +215,7 @@
 		260735122BF6B3DF005AC69D /* PopulationPage */ = {
 			isa = PBXGroup;
 			children = (
+				265DB8D52BF947E40020968C /* Modal */,
 				D0F4A0F22BF6DCEA001DE35A /* PopulationPageView.swift */,
 				2607351D2BF6B54E005AC69D /* PopulationPageVC.swift */,
 				D0F4A0F02BF6DCD1001DE35A /* PopulationPageViewModel.swift */,
@@ -242,6 +245,14 @@
 				26178E752BF7BFAC00858EC9 /* NatureCell.swift */,
 			);
 			path = NatureCell;
+			sourceTree = "<group>";
+		};
+		265DB8D52BF947E40020968C /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				265DB8D42BF947E40020968C /* PopulationModal.swift */,
+			);
+			path = Modal;
 			sourceTree = "<group>";
 		};
 		267283382BF900EC00D7348F /* SpinningCircle */ = {
@@ -315,12 +326,12 @@
 			path = CustomUIViews;
 			sourceTree = "<group>";
 		};
-		94BC91862BF82F4D00CE5D86 /* Cosntants */ = {
+		94BC91862BF82F4D00CE5D86 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				94BFD4D12BF7E7AA00098C90 /* Constants.swift */,
 			);
-			path = Cosntants;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,6 +426,7 @@
 				26178E762BF7BFAC00858EC9 /* NatureCell.swift in Sources */,
 				94BFD4D22BF7E7AA00098C90 /* Constants.swift in Sources */,
 				D0F4A0F32BF6DCEA001DE35A /* PopulationPageView.swift in Sources */,
+				265DB8D62BF947E40020968C /* PopulationModal.swift in Sources */,
 				87ED3C632BF91A7F0089B01C /* SolarResourceInformationPageModel.swift in Sources */,
 				944516F32BF7E9A000CA5A78 /* CustomLabel.swift in Sources */,
 				260735202BF6B55E005AC69D /* WeatherPageVC.swift in Sources */,
