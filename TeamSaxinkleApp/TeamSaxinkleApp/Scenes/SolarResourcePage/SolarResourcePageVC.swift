@@ -6,11 +6,25 @@
 //
 
 import UIKit
+//start working
+
+protocol SolarResourcePageVCViewModelDelegate: SolarResourcePageViewDelegate {
+    func didLoad(delegate: SolarResourcePageViewModelDelegate)
+}
+
+protocol SolarResourcePageVCViewDelegate: UIView, SolarResourcePageViewModelDelegate {
+    
+}
 
 class SolarResourcePageVC: UIViewController {
-
+    var solarResourceView: SolarResourcePageVCViewDelegate?
+    var solarResourceViewModel: SolarResourcePageVCViewModelDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        solarResourceViewModel = SolarResourcePageViewModel()
+        solarResourceView = SolarResourcePageView(delegate: solarResourceViewModel!)
+        solarResourceViewModel?.didLoad(delegate: solarResourceView!)
+        view = solarResourceView
     }
 }
