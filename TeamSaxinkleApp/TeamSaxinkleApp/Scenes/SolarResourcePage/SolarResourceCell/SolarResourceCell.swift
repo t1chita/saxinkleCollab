@@ -68,51 +68,41 @@ class SolarResourceCell: UICollectionViewCell {
     
     //MARK: - Helper Methods
     private func generateAttributedString(with title: String, and data: TimePeriod) -> NSAttributedString {
-        let bigTitle = NSAttributedString(string: "Average \(title):\n", attributes: [
-            .font: UIFont.systemFont(ofSize: 24, weight: .bold),
-        ])
-        
+        let combinedString = NSMutableAttributedString()
+        //ერთეული რომელიც ამ მონაცემს შეესადაგება
         let unit = title == "Tilt at Latitude" ? "degrees" : "W/m²"
         
-        let subtitleAnnual = NSAttributedString(string: "Annual: ", attributes: [
-            .font: UIFont.systemFont(ofSize: 20, weight: .semibold),
-        ])
-        
-        let textAnnual = NSAttributedString(string: "\(data.annual) \(unit)\n", attributes: [
-            .font: UIFont.systemFont(ofSize: 16),
-        ])
-        
-        let subtitleMonthly = NSAttributedString(string: "Monthly:\n", attributes: [
-            .font: UIFont.systemFont(ofSize: 20, weight: .semibold),
-        ])
-        let textMonthly = NSAttributedString(string: generateMonthlyText(with: data, and: unit), attributes: [
-            .font: UIFont.systemFont(ofSize: 16),
-        ])
-        
-        let combinedString = NSMutableAttributedString()
-        combinedString.append(bigTitle)
-        combinedString.append(subtitleAnnual)
-        combinedString.append(textAnnual)
-        combinedString.append(subtitleMonthly)
-        combinedString.append(textMonthly)
+        //გავაერთიანოთ ტექსტი
+        [
+            ("Average \(title):\n", 24, UIFont.Weight.bold),
+            ("Annual: ", 20, UIFont.Weight.semibold),
+            ("\(data.annual) \(unit)\n", 16, UIFont.Weight.regular),
+            ("Monthly:\n", 20, UIFont.Weight.semibold),
+            (generateMonthlyText(with: data.monthly, and: unit), 16, UIFont.Weight.regular),
+        ].forEach {
+            let line = NSAttributedString(string: $0.0, attributes: [
+                .font: UIFont.systemFont(ofSize: $0.1, weight: $0.2),
+            ])
+            combinedString.append(line)
+        }
         
         return combinedString
     }
     
-    private func generateMonthlyText(with data: TimePeriod, and unit: String) -> String {
+    private func generateMonthlyText(with data: MonthlyData, and unit: String) -> String {
 """
-January: \(data.monthly.jan) \(unit)
-February: \(data.monthly.feb) \(unit)
-March: \(data.monthly.mar) \(unit)
-April: \(data.monthly.apr) \(unit)
-May: \(data.monthly.may) \(unit)
-June: \(data.monthly.jun) \(unit)
-July: \(data.monthly.jul) \(unit)
-August: \(data.monthly.aug) \(unit)
-September: \(data.monthly.sep) \(unit)
-October: \(data.monthly.oct) \(unit)
-November: \(data.monthly.nov) \(unit)
-December: \(data.monthly.dec) \(unit)
+January: \(data.jan) \(unit)
+February: \(data.feb) \(unit)
+March: \(data.mar) \(unit)
+April: \(data.apr) \(unit)
+May: \(data.may) \(unit)
+June: \(data.jun) \(unit)
+July: \(data.jul) \(unit)
+August: \(data.aug) \(unit)
+September: \(data.sep) \(unit)
+October: \(data.oct) \(unit)
+November: \(data.nov) \(unit)
+December: \(data.dec) \(unit)
 """
     }
     
