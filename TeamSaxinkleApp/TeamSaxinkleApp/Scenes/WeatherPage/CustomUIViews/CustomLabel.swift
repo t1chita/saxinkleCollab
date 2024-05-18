@@ -26,5 +26,4 @@ class CustomLabel: UILabel {
         textColor = .label
         numberOfLines = 0
     }
-    
 }

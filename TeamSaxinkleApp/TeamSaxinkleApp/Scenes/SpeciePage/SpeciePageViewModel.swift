@@ -42,8 +42,10 @@ class SpeciePageViewModel: ViewModelLoadDelegate {
         NetworkService.networkService.getData(urlString: apiForCityID) { [weak self] (result: Result<City,Error>) in
             switch result {
             case .success(let success):
-                self?.cityID = success.results[0].id ?? 0
-                completion(true)
+                if !success.results.isEmpty {
+                    self?.cityID = success.results[0].id ?? 0
+                    completion(true)
+                }
             case .failure(let failure):
                 print(failure.localizedDescription)
                 completion(false)
