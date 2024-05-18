@@ -7,7 +7,8 @@
 
 import UIKit
 import ImageService
-class NatureCell: UITableViewCell {
+
+final class NatureCell: UITableViewCell {
     static let identifier = "NatureCell"
     //MARK: - UIComponents
     private let rectangleView: UIView = {

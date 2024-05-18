@@ -16,7 +16,7 @@ protocol SpinningCircleViewDelegate: AnyObject {
     func stopAnimatingSpinningCircle()
 }
 
-class SpeciePageVC: UIViewController {
+final class SpeciePageVC: UIViewController {
     //MARK: Properties-
     let speciePageView = SpeciePageView()
     let speciePageViewModel = SpeciePageViewModel()

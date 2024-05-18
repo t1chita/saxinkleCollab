@@ -13,7 +13,7 @@ protocol ViewModelLoadDelegate: AnyObject {
 }
 
 
-class SpeciePageViewModel: ViewModelLoadDelegate {
+final class SpeciePageViewModel: ViewModelLoadDelegate {
     //MARK: Properties
     var cityID: Int = 0
     var natureArray: [NatureResults] = []
