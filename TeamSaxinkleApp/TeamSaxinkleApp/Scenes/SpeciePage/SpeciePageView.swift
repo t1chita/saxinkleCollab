@@ -10,12 +10,8 @@ import UIKit
 class SpeciePageView: UIView {
     //TODO: spinningLoading🚨
     //MARK: - UIComponents
-    private let searchCityBar: UISearchBar = {
-        let srbar = UISearchBar()
-        srbar.translatesAutoresizingMaskIntoConstraints = false
-        srbar.searchBarStyle = .prominent
-        srbar.placeholder = "Search City"
-        srbar.backgroundImage = UIImage()
+    private let searchCityBar: CustomSearchBar = {
+        let srbar = CustomSearchBar()
         return srbar
     }()
     

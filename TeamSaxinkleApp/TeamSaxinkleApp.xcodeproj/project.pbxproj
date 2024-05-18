@@ -110,6 +110,7 @@
 			children = (
 				260735102BF6B0CC005AC69D /* App */,
 				26877D832BF6C4E4006E1004 /* TabBar */,
+				94BC91852BF82F0400CE5D86 /* CustomUIViews */,
 				2607350E2BF6B0C7005AC69D /* Scenes */,
 				2607350F2BF6B0C9005AC69D /* Supporting */,
 				260735192BF6B4DF005AC69D /* Resources */,
@@ -122,7 +123,6 @@
 			children = (
 				87ED3C542BF8D7B90089B01C /* SolarResourceCell */,
 				87ED3C552BF8D7D40089B01C /* SolarResourcePageModel */,
-				87ED3C562BF8D92C0089B01C /* CustomSearchBar.swift */,
 				2607351B2BF6B52F005AC69D /* SolarResourcePageVC.swift */,
 				87ED3C4E2BF796170089B01C /* SolarResourcePageView.swift */,
 				87ED3C502BF796270089B01C /* SolarResourcePageViewModel.swift */,
@@ -134,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				94BC91862BF82F4D00CE5D86 /* Cosntants */,
-				94BC91852BF82F0400CE5D86 /* CustomUIViews */,
 				94BC91842BF82EDC00CE5D86 /* WeatherPageCell */,
 				94BFD4CF2BF7E73C00098C90 /* WeatherPageView.swift */,
 				2607351F2BF6B55E005AC69D /* WeatherPageVC.swift */,
@@ -271,6 +270,7 @@
 		94BC91852BF82F0400CE5D86 /* CustomUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				87ED3C562BF8D92C0089B01C /* CustomSearchBar.swift */,
 				944516F02BF7E98100CA5A78 /* CustomTextField.swift */,
 				944516F22BF7E9A000CA5A78 /* CustomLabel.swift */,
 				94BC91872BF8BDEB00CE5D86 /* CustomButton.swift */,
