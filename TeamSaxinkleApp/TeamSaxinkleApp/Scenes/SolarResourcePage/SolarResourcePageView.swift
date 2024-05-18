@@ -10,15 +10,19 @@ import UIKit
 protocol SolarResourcePageViewDelegate {
     func fetchData(with: String)
 }
+
+protocol PresentableVC: SolarResourcePageViewDelegate {
+    func presentView(of: SolarInformation)
+}
 class SolarResourcePageView: UIView {
     //MARK: - Properties
-    private var delegate: SolarResourcePageViewDelegate
+    private var delegate: PresentableVC
     
     private var data: SolarData?
     
     private var solarCollectionView: UICollectionView = {
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
-        collectionViewFlowLayout.scrollDirection = .vertical
+        collectionViewFlowLayout.scrollDirection = .horizontal
         collectionViewFlowLayout.minimumLineSpacing = 10
         collectionViewFlowLayout.minimumInteritemSpacing = 10
         collectionViewFlowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -26,6 +30,7 @@ class SolarResourcePageView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(SolarResourceCell.self, forCellWithReuseIdentifier: SolarResourceCell.identifier)
         collectionView.backgroundColor = .clear
+        collectionView.isUserInteractionEnabled = true
         return collectionView
     }()
     
@@ -48,8 +53,15 @@ class SolarResourcePageView: UIView {
         return searchBar
     }()
     
+    private var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "SolarEnergyImage")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     //MARK: - initialisers
-    init(delegate: SolarResourcePageViewDelegate) {
+    init(delegate: PresentableVC) {
         self.delegate = delegate
         super.init(frame: .zero)
         setupUI()
@@ -83,8 +95,9 @@ class SolarResourcePageView: UIView {
     private func setSolarCollectionView() {
         wholeStackView.addArrangedSubview(solarCollectionView)
         solarCollectionView.dataSource = self
+        solarCollectionView.delegate = self
     }
-    
+
     //MARK: - Helper Methods
     
     //MARK: - Set Constraints To UI Components
@@ -102,8 +115,10 @@ class SolarResourcePageView: UIView {
             searchBar.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
+
 }
 
+//MARK: - SolarResourcePageVCViewDelegate
 extension SolarResourcePageView: SolarResourcePageVCViewDelegate {
     
     func dataFetched(data: SolarData) {
@@ -122,6 +137,7 @@ extension SolarResourcePageView: SolarResourcePageVCViewDelegate {
     }
 }
 
+//MARK: - UISearchBarDelegate
 extension SolarResourcePageView: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -144,6 +160,7 @@ extension SolarResourcePageView: UISearchBarDelegate {
     }
 }
 
+//MARK: - UICollectionViewDataSource
 extension SolarResourcePageView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -159,5 +176,17 @@ extension SolarResourcePageView: UICollectionViewDataSource {
         default: break
         }
         return cell
+    }
+}
+
+//MARK: -
+extension SolarResourcePageView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch (indexPath.row) {
+        case 0: delegate.presentView(of: .DNI)
+        case 1: delegate.presentView(of: .GHI)
+        case 2: delegate.presentView(of: .TAL)
+        default: break
+        }
     }
 }
