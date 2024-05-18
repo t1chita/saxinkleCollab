@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
     //MARK: - Tab Setup
     
     private func setTabBar() {
-        tabBar.barTintColor = .gray
+        tabBar.backgroundColor = .black
         tabBar.tintColor = .purple
         tabBar.unselectedItemTintColor = .orange
     }
