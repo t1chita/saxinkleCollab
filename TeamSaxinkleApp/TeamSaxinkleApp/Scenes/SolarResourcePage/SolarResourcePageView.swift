@@ -21,12 +21,9 @@ final class SolarResourcePageView: UIView {
     
     private var data: SolarData?
     
-    private var label: UILabel = {
-        let label = UILabel()
+    private var label: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Click On Boxes For Information"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
         return label
     }()
     
