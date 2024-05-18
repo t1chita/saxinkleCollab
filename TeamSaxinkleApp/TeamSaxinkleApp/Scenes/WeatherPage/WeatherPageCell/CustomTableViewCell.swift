@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTableViewCell: UITableViewCell {
+final class CustomTableViewCell: UITableViewCell {
     // MARK: - Properties
     static let cellIdentifier = "weatherCell"
     
@@ -37,9 +37,20 @@ class CustomTableViewCell: UITableViewCell {
         return view
     }()
     
+    let weatherDescriptionLabel: CustomLabel = {
+       let view = CustomLabel()
+        return view
+    }()
+    
+    let iconView: UIImageView = {
+       let view = UIImageView(image: UIImage(systemName: "cloud.sun"))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     // MARK: - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .systemBackground
         setupUI()
     }
     
@@ -51,10 +62,13 @@ class CustomTableViewCell: UITableViewCell {
     
     // MARK: - setupUI
     func setupUI() {
-        backgroundColor = .tertiarySystemBackground
+        selectionStyle = .none
+        backgroundColor = .systemBackground
         addSubview(containerView)
         containerView.addSubview(currentTime)
+        containerView.addSubview(iconView)
         containerView.addSubview(temperatureLabel)
+        containerView.addSubview(weatherDescriptionLabel)
         
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
@@ -62,11 +76,16 @@ class CustomTableViewCell: UITableViewCell {
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
             
-            currentTime.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            currentTime.trailingAnchor.constraint(equalTo: temperatureLabel.leadingAnchor, constant: -34),
-            currentTime.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            iconView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
+            iconView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: 0),
             
-            temperatureLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0),
+            currentTime.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 5),
+            currentTime.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 7),
+
+            weatherDescriptionLabel.leadingAnchor.constraint(equalTo: currentTime.leadingAnchor, constant: 0),
+            weatherDescriptionLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -7),
+            
+            temperatureLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15),
             temperatureLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
         ])
     }
@@ -76,7 +95,7 @@ class CustomTableViewCell: UITableViewCell {
         if #available(iOS 13.0, *) {
             containerView.layer.borderColor = UIColor.label.cgColor
         } else {
-            containerView.layer.borderColor = UIColor.black.cgColor
+            containerView.layer.borderColor = UIColor.label.cgColor
         }
     }
     

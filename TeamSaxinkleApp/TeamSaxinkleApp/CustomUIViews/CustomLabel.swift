@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomLabel: UILabel {
+final class CustomLabel: UILabel {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,7 +22,7 @@ class CustomLabel: UILabel {
     func configureLabel() {
         translatesAutoresizingMaskIntoConstraints = false
         textAlignment = .left
-        font = UIFont.systemFont(ofSize: 14)
+        font = UIFont.systemFont(ofSize: 16)
         textColor = .label
         numberOfLines = 0
     }

@@ -8,19 +8,10 @@
 import UIKit
 
 
-class WeatherPageView: UIView {
+final class WeatherPageView: UIView {
     
     // MARK: - Properties
     public var weatherModel: [ListArray] = []
-    
-//    სქროლვიუ აღარრ მჭირდება - წავშალოო!!
-    let weatherScrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isScrollEnabled = true
-        view.showsVerticalScrollIndicator = true
-        return view
-    }()
     
     let weatherStackView: CustomVStackView = {
         let view = CustomVStackView()
@@ -30,6 +21,7 @@ class WeatherPageView: UIView {
     let latLabel: CustomLabel = {
         let title = CustomLabel()
         title.text = "Enter latitude"
+        title.font = UIFont.boldSystemFont(ofSize: title.font.pointSize)
         return title
     }()
     
@@ -42,6 +34,7 @@ class WeatherPageView: UIView {
     let longLabel: CustomLabel = {
         let title = CustomLabel()
         title.text = "Enter longitude"
+        title.font = UIFont.boldSystemFont(ofSize: title.font.pointSize)
         return title
     }()
     
@@ -53,7 +46,7 @@ class WeatherPageView: UIView {
     
     let searchWeatherButton: CustomButton = {
         let view = CustomButton()
-        view.setTitle("მოძებნე ... ", for: .normal)
+        view.setTitle("ძებნა ", for: .normal)
         return view
     }()
     
@@ -62,19 +55,21 @@ class WeatherPageView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.cellIdentifier)
         view.separatorStyle = .none
+        view.backgroundColor = .systemBackground
+        view.clipsToBounds = true
         return view
     }()
     
     let forecastLocationLabel: CustomLabel = {
         let view = CustomLabel()
         view.textAlignment = .center
-        view.font = UIFont.boldSystemFont(ofSize: 20)
+        view.font = UIFont.boldSystemFont(ofSize: view.font.pointSize)
+        view.text = "Location: Country - Place"
         return view
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemBackground
         setupUI()
     }
     required init?(coder: NSCoder) {
@@ -83,46 +78,34 @@ class WeatherPageView: UIView {
     
     // MARK: - SetupUI
     func setupUI() {
-        setupScrollViewConstraints()
         setupStackViewConstraints()
         setupTableView()
     }
     
     // MARK: - Setup Views
-    func setupScrollViewConstraints() {
-        addSubview(weatherScrollView)
-        addSubview(forecastLocationLabel)
-        weatherScrollView.addSubview(weatherStackView)
-        
-        NSLayoutConstraint.activate([
-            weatherScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            weatherScrollView.topAnchor.constraint(equalTo: topAnchor, constant: 41),
-            weatherScrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            weatherScrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -140),
-        ])
-    }
     
     func setupStackViewConstraints() {
+        addSubview(weatherStackView)
         weatherStackView.addArrangedSubview(latLabel)
         weatherStackView.addArrangedSubview(latitudeTextField)
         weatherStackView.addArrangedSubview(longLabel)
         weatherStackView.addArrangedSubview(longitudeTextField)
         addSubview(searchWeatherButton)
+        addSubview(forecastLocationLabel)
         
         NSLayoutConstraint.activate([
-            weatherStackView.leadingAnchor.constraint(equalTo: weatherScrollView.leadingAnchor, constant: 0),
-            weatherStackView.topAnchor.constraint(equalTo: weatherScrollView.topAnchor, constant: 0),
-            weatherStackView.trailingAnchor.constraint(equalTo: weatherScrollView.trailingAnchor, constant: 0),
-            weatherStackView.bottomAnchor.constraint(equalTo: weatherScrollView.bottomAnchor, constant: 0),
-            weatherStackView.widthAnchor.constraint(equalTo: weatherScrollView.widthAnchor),
+            weatherStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            weatherStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
+            weatherStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            weatherStackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.18),
             
             latitudeTextField.heightAnchor.constraint(equalToConstant: 45),
             longitudeTextField.heightAnchor.constraint(equalTo: latitudeTextField.heightAnchor),
             
-            searchWeatherButton.leadingAnchor.constraint(equalTo: weatherStackView.leadingAnchor),
-            searchWeatherButton.trailingAnchor.constraint(equalTo: weatherStackView.trailingAnchor),
-            searchWeatherButton.topAnchor.constraint(equalTo: weatherStackView.bottomAnchor, constant: 25),
+            searchWeatherButton.topAnchor.constraint(equalTo: weatherStackView.bottomAnchor, constant: 10),
             searchWeatherButton.heightAnchor.constraint(equalTo: latitudeTextField.heightAnchor),
+            searchWeatherButton.widthAnchor.constraint(equalTo: latitudeTextField.widthAnchor, multiplier: 0.7),
+            searchWeatherButton.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
     
@@ -130,10 +113,10 @@ class WeatherPageView: UIView {
         addSubview(weatherDetailsTableView)
         
         NSLayoutConstraint.activate([
-            weatherDetailsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            weatherDetailsTableView.topAnchor.constraint(equalTo: forecastLocationLabel.bottomAnchor, constant: 20),
-            weatherDetailsTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            weatherDetailsTableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
+            weatherDetailsTableView.leadingAnchor.constraint(equalTo: weatherStackView.leadingAnchor),
+            weatherDetailsTableView.topAnchor.constraint(equalTo: forecastLocationLabel.bottomAnchor, constant: 0),
+            weatherDetailsTableView.trailingAnchor.constraint(equalTo: weatherStackView.trailingAnchor),
+            weatherDetailsTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             
             forecastLocationLabel.topAnchor.constraint(equalTo: searchWeatherButton.bottomAnchor, constant: 10),
             forecastLocationLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
