@@ -32,19 +32,21 @@ extension SolarResourcePageViewModel: SolarResourcePageVCViewModelDelegate {
     
     //MARK: - Methods
     func fetchData(with address: String) {
-        if address.isEmpty {
-            delegate?.dataDidNotFetch()
-        } else {
-            NetworkService.networkService.getData(urlString: urlString + address) { (result: Result<SolarResourcePageModel, Error>) in
-                switch result {
-                case .success(let success):
-                    self.model = success
-                    self.delegate?.dataFetched(data: self.model!.outputs)
-                case .failure(let failure):
-                    //ერორის პრინტვა
-                    print(failure.localizedDescription)
-                }
+        var didNotFetch = true
+        NetworkService.networkService.getData(urlString: urlString + address) { (result: Result<SolarResourcePageModel, Error>) in
+            switch result {
+            case .success(let success):
+                self.model = success
+                didNotFetch = false
+                self.delegate?.dataFetched(data: self.model!.outputs)
+            case .failure(let failure):
+                //ერორის პრინტვა
+                print(failure.localizedDescription)
+                didNotFetch = true
             }
+        }
+        if didNotFetch {
+            delegate?.dataDidNotFetch()
         }
     }
     

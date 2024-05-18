@@ -49,6 +49,10 @@ class SolarResourcePageView: UIView {
         //ხაზები რომ არ გამოჩნდეს
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchBar.layer.cornerRadius = 10
+        searchBar.searchTextField.borderStyle = .roundedRect
+        searchBar.searchTextField.layer.borderColor = UIColor.clear.cgColor
+        searchBar.searchTextField.layer.borderWidth = 1
+        searchBar.searchTextField.layer.cornerRadius = 10
         return searchBar
     }()
     
@@ -117,19 +121,32 @@ extension SolarResourcePageView: SolarResourcePageVCViewDelegate {
     }
     
     func dataDidNotFetch() {
+        solarCollectionView.removeFromSuperview()
+        wholeStackView.layoutIfNeeded()
     }
 }
 
 extension SolarResourcePageView: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        delegate.fetchData(with: searchBar.text ?? "")
-    }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.endEditing(true)
-        super.touchesBegan(touches, with: event)
+        if let text = searchBar.text, text != "" {
+            delegate.fetchData(with: text)
+        }
         searchBar.resignFirstResponder()
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            searchBar.searchTextField.layer.borderColor = UIColor.red.cgColor
+        } else {
+            searchBar.searchTextField.layer.borderColor = UIColor.clear.cgColor
+        }
+    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.endEditing(true)
+//        super.touchesBegan(touches, with: event)
+//        searchBar.resignFirstResponder()
+//    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
