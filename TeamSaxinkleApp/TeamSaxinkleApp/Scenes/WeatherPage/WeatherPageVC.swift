@@ -8,7 +8,7 @@
 import UIKit
 import NetworkingService
 
-class WeatherPageVC: UIViewController {
+final class WeatherPageVC: UIViewController {
     
     // MARK: - Properties
     let weatherPageView: WeatherPageView
@@ -38,10 +38,13 @@ class WeatherPageVC: UIViewController {
         view = weatherPageView
         weatherPageView.weatherDetailsTableView.dataSource = self
         weatherPageView.weatherDetailsTableView.delegate = self
-        weatherPageView.searchWeatherButton.addTarget(self, action: #selector(getWeather), for: .touchUpInside)
+        weatherPageView.searchWeatherButton.addAction(UIAction(title: "", handler: { [weak self] _ in
+            self?.getWeather()
+        }), for: .touchUpInside)
+        
     }
     
-    @objc func getWeather() {
+    func getWeather() {
         guard let lat = weatherPageView.latitudeTextField.text, let lon = weatherPageView.longitudeTextField.text, !lat.isEmpty, !lon.isEmpty else {
             print("Please enter latitude and longitude")
             return
@@ -85,11 +88,11 @@ class WeatherPageVC: UIViewController {
 
 extension WeatherPageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 25
+        return 5
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 65
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -111,6 +114,7 @@ extension WeatherPageVC: UITableViewDataSource {
         if let weatherData = weatherData {
             cell.currentTime.text = weatherData.formattedDate.timeOfDay
             cell.temperatureLabel.text = "\(weatherData.main.temp)°C"
+            cell.weatherDescriptionLabel.text = weatherData.weather[0].description
         }
         return cell
     }
