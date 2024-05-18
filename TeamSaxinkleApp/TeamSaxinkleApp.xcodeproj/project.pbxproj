@@ -135,7 +135,7 @@
 		2607350B2BF6B0BE005AC69D /* WeatherPage */ = {
 			isa = PBXGroup;
 			children = (
-				94BC91862BF82F4D00CE5D86 /* Cosntants */,
+				94BC91862BF82F4D00CE5D86 /* Utilities */,
 				94BC91842BF82EDC00CE5D86 /* WeatherPageCell */,
 				94BFD4CF2BF7E73C00098C90 /* WeatherPageView.swift */,
 				2607351F2BF6B55E005AC69D /* WeatherPageVC.swift */,
@@ -290,12 +290,12 @@
 			path = CustomUIViews;
 			sourceTree = "<group>";
 		};
-		94BC91862BF82F4D00CE5D86 /* Cosntants */ = {
+		94BC91862BF82F4D00CE5D86 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				94BFD4D12BF7E7AA00098C90 /* Constants.swift */,
 			);
-			path = Cosntants;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
