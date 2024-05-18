@@ -18,9 +18,9 @@ class SolarResourcePageView: UIView {
     
     private var solarCollectionView: UICollectionView = {
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
-        collectionViewFlowLayout.scrollDirection = .horizontal
-        collectionViewFlowLayout.minimumLineSpacing = 1
-        collectionViewFlowLayout.minimumInteritemSpacing = 1
+        collectionViewFlowLayout.scrollDirection = .vertical
+        collectionViewFlowLayout.minimumLineSpacing = 10
+        collectionViewFlowLayout.minimumInteritemSpacing = 10
         collectionViewFlowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -142,11 +142,6 @@ extension SolarResourcePageView: UISearchBarDelegate {
             searchBar.searchTextField.layer.borderColor = UIColor.clear.cgColor
         }
     }
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        self.endEditing(true)
-//        super.touchesBegan(touches, with: event)
-//        searchBar.resignFirstResponder()
-//    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()

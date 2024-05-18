@@ -34,6 +34,11 @@ class SolarResourceCell: UICollectionViewCell {
     //MARK: - Setup UI Components
     private func setupUI() {
         backgroundColor = .clear
+        contentView.backgroundColor = .label.withAlphaComponent(0.1)
+        contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 20
+        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderWidth = 2
         setLabel()
     }
     
@@ -45,11 +50,11 @@ class SolarResourceCell: UICollectionViewCell {
     //MARK: - Set Constraints To UI Components
     private func setConstraintsToLabel() {
         NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalToConstant: 200),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor),
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor),
+            label.widthAnchor.constraint(equalToConstant: window?.screen.bounds.width ?? 300),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
         ])
     }
     
