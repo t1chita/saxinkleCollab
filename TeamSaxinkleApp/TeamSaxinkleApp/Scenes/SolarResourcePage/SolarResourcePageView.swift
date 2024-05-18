@@ -41,18 +41,8 @@ class SolarResourcePageView: UIView {
     }()
     
     private var searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
+        let searchBar = CustomSearchBar()
         searchBar.placeholder = "Search address, get solar resource information"
-        searchBar.searchTextField.font = .systemFont(ofSize: 12)
-        searchBar.isUserInteractionEnabled = true
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        //ხაზები რომ არ გამოჩნდეს
-        searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        searchBar.layer.cornerRadius = 10
-        searchBar.searchTextField.borderStyle = .roundedRect
-        searchBar.searchTextField.layer.borderColor = UIColor.clear.cgColor
-        searchBar.searchTextField.layer.borderWidth = 1
-        searchBar.searchTextField.layer.cornerRadius = 10
         return searchBar
     }()
     
