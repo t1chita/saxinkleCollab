@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomVStackView: UIStackView {
+final class CustomVStackView: UIStackView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,9 +22,9 @@ class CustomVStackView: UIStackView {
     func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         axis = .vertical
-        spacing = 0
+        spacing = 1
         distribution = .fillProportionally
-        backgroundColor = .lightGray
+        backgroundColor = .systemBackground
     }
 
 }

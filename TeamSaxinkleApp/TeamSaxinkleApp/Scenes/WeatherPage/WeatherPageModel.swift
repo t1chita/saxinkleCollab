@@ -19,6 +19,7 @@ struct WeatherPageModel: Decodable {
 
 struct ListArray: Decodable {
     let main: WeatherMain
+    let weather: [WeatherArray]
     let dt_txt: String
     
     var formattedDate: (dayOfWeek: String, timeOfDay: String) {
@@ -37,5 +38,10 @@ struct ListArray: Decodable {
 
 struct WeatherMain: Decodable {
     let temp: Double
+}
+
+struct WeatherArray: Decodable {
+    let description: String
+    let icon: String
 }
 
