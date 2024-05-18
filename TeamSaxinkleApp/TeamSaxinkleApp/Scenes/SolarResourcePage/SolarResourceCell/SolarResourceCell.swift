@@ -33,13 +33,21 @@ class SolarResourceCell: UICollectionViewCell {
         
     //MARK: - Setup UI Components
     private func setupUI() {
+        setBackgroundColor()
+        setContentView()
+        setLabel()
+    }
+    
+    private func setBackgroundColor() {
         backgroundColor = .clear
+    }
+    
+    private func setContentView() {
         contentView.backgroundColor = .label.withAlphaComponent(0.1)
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 20
         contentView.layer.borderColor = UIColor.black.cgColor
         contentView.layer.borderWidth = 2
-        setLabel()
     }
     
     private func setLabel() {

@@ -40,19 +40,11 @@ class SolarResourcePageView: UIView {
         return stack
     }()
     
+    private var wholeStackViewBottomConstraint: NSLayoutConstraint?
+    
     private var searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
+        let searchBar = CustomSearchBar()
         searchBar.placeholder = "Search address, get solar resource information"
-        searchBar.searchTextField.font = .systemFont(ofSize: 12)
-        searchBar.isUserInteractionEnabled = true
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        //ხაზები რომ არ გამოჩნდეს
-        searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        searchBar.layer.cornerRadius = 10
-        searchBar.searchTextField.borderStyle = .roundedRect
-        searchBar.searchTextField.layer.borderColor = UIColor.clear.cgColor
-        searchBar.searchTextField.layer.borderWidth = 1
-        searchBar.searchTextField.layer.cornerRadius = 10
         return searchBar
     }()
     
@@ -97,9 +89,9 @@ class SolarResourcePageView: UIView {
     
     //MARK: - Set Constraints To UI Components
     private func setConstraintsToWholeStackView() {
+        wholeStackViewBottomConstraint = wholeStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         NSLayoutConstraint.activate([
             wholeStackView.topAnchor.constraint(equalTo: topAnchor, constant: 100),
-            wholeStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             wholeStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             wholeStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
@@ -115,12 +107,16 @@ class SolarResourcePageView: UIView {
 extension SolarResourcePageView: SolarResourcePageVCViewDelegate {
     
     func dataFetched(data: SolarData) {
+        //რათა collectionView-მ იცოდეს სიგანე რა აქვს
+        wholeStackViewBottomConstraint?.isActive = true
         setSolarCollectionView()
         self.data = data
         solarCollectionView.reloadData()
     }
     
     func dataDidNotFetch() {
+        //რათა search bar იყოს ზევით
+        wholeStackViewBottomConstraint?.isActive = false
         solarCollectionView.removeFromSuperview()
         wholeStackView.layoutIfNeeded()
     }

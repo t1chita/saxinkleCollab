@@ -17,9 +17,11 @@ protocol SolarResourcePageVCViewDelegate: UIView, SolarResourcePageViewModelDele
 }
 
 class SolarResourcePageVC: UIViewController {
+    //MARK: - Properties
     var solarResourceView: SolarResourcePageVCViewDelegate?
     var solarResourceViewModel: SolarResourcePageVCViewModelDelegate?
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         solarResourceViewModel = SolarResourcePageViewModel()
