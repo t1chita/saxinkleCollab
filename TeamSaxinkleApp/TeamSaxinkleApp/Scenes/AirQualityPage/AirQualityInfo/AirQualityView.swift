@@ -9,13 +9,14 @@ import UIKit
 
 class AirQualityView: UIView {
 
-    let scrollView: UIScrollView = {
+    //MARK: - UIComponents
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
-    let contentView: UIView = {
+    private let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -28,7 +29,7 @@ class AirQualityView: UIView {
         return searchBar
     }()
     
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Air Quality"
         label.font = UIFont.boldSystemFont(ofSize: 26)
@@ -37,7 +38,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = """
         Air quality refers to the condition of the air in our surroundings. It is essential to monitor and maintain good air quality as it directly impacts our health and the environment. Factors such as industrial emissions, vehicle exhaust, and natural phenomena can contribute to poor air quality. Simple measures like reducing energy consumption, using public transport, and planting trees can help improve air quality.
@@ -48,7 +49,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let factorsLabel: UILabel = {
+    private let factorsLabel: UILabel = {
         let label = UILabel()
         label.text = "Factors Affecting Air Quality"
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -56,7 +57,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let temperatureImageView: UIImageView = {
+    private let temperatureImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "AirQualityImage1")
         imageView.contentMode = .scaleAspectFit
@@ -64,7 +65,7 @@ class AirQualityView: UIView {
         return imageView
     }()
     
-    let temperatureLabel: UILabel = {
+    private let temperatureLabel: UILabel = {
         let label = UILabel()
         label.text = "Temperature"
         label.font = UIFont.systemFont(ofSize: 19)
@@ -72,7 +73,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let humidityImageView: UIImageView = {
+    private let humidityImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "AirQualityImage2")
         imageView.contentMode = .scaleAspectFit
@@ -80,7 +81,7 @@ class AirQualityView: UIView {
         return imageView
     }()
     
-    let humidityLabel: UILabel = {
+    private let humidityLabel: UILabel = {
         let label = UILabel()
         label.text = "Humidity"
         label.font = UIFont.systemFont(ofSize: 19)
@@ -88,7 +89,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let windImageView: UIImageView = {
+    private let windImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "AirQualityImage3")
         imageView.contentMode = .scaleAspectFit
@@ -96,7 +97,7 @@ class AirQualityView: UIView {
         return imageView
     }()
     
-    let windLabel: UILabel = {
+    private let windLabel: UILabel = {
         let label = UILabel()
         label.text = "Wind"
         label.font = UIFont.systemFont(ofSize: 19)
@@ -104,7 +105,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let tipsLabel: UILabel = {
+    private let tipsLabel: UILabel = {
         let label = UILabel()
         label.text = "Tips for Improving Air Quality"
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -112,7 +113,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let reduceEnergyHeading: UILabel = {
+    private let reduceEnergyHeading: UILabel = {
         let label = UILabel()
         label.text = "Reduce Energy Consumption"
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -120,7 +121,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let avoidIdlingHeading: UILabel = {
+    private let avoidIdlingHeading: UILabel = {
         let label = UILabel()
         label.text = "Avoid Vehicle Idling"
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -128,7 +129,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let usePublicTransportHeading: UILabel = {
+    private let usePublicTransportHeading: UILabel = {
         let label = UILabel()
         label.text = "Use Public Transport"
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -136,7 +137,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let plantTreesHeading: UILabel = {
+    private let plantTreesHeading: UILabel = {
         let label = UILabel()
         label.text = "Plant Trees"
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -144,7 +145,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let reduceEnergyLabel: UILabel = {
+    private let reduceEnergyLabel: UILabel = {
         let label = UILabel()
         label.text = "Use energy-efficient appliances and turn off electronics when not in use."
         label.numberOfLines = 0
@@ -153,7 +154,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let avoidIdlingLabel: UILabel = {
+    private let avoidIdlingLabel: UILabel = {
         let label = UILabel()
         label.text = "Turn off your vehicle's engine when parked for more than a minute."
         label.numberOfLines = 0
@@ -162,7 +163,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let usePublicTransportLabel: UILabel = {
+    private let usePublicTransportLabel: UILabel = {
         let label = UILabel()
         label.text = "Opt for buses, trains, or carpools to reduce individual vehicle emissions."
         label.numberOfLines = 0
@@ -171,7 +172,7 @@ class AirQualityView: UIView {
         return label
     }()
     
-    let plantTreesLabel: UILabel = {
+    private let plantTreesLabel: UILabel = {
         let label = UILabel()
         label.text = "Trees absorb carbon dioxide and release oxygen, contributing to cleaner air."
         label.numberOfLines = 0
@@ -180,6 +181,7 @@ class AirQualityView: UIView {
         return label
     }()
     
+    //MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -190,6 +192,7 @@ class AirQualityView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - setupViews
     private func setupViews() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -223,86 +226,171 @@ class AirQualityView: UIView {
         contentView.addSubview(plantTreesLabel)
     }
     
+    //MARK: - setupConstraints
     private func setupConstraints() {
+        setupScrollViewConstraints()
+        setupContentViewConstraints()
+        setupSearchBarConstraints()
+        setupTitleLabelConstraints()
+        setupDescriptionLabelConstraints()
+        setupFactorsLabelConstraints()
+        setupTemperatureConstraints()
+        setupHumidityConstraints()
+        setupWindConstraints()
+        setupTipsConstraints()
+        setupReduceEnergyConstraints()
+        setupAvoidIdlingConstraints()
+        setupPublicTransportConstraints()
+        setupPlantTreesConstraints()
+    }
+
+    //MARK: - setupScrollViewConstraints
+    private func setupScrollViewConstraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+
+    //MARK: - setupContentViewConstraints
+    private func setupContentViewConstraints() {
+        NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+    }
+
+    //MARK: - setupSearchBarConstraints
+    private func setupSearchBarConstraints() {
+        NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            
+            searchBar.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
+    }
+
+    //MARK: - setupTitleLabelConstraints
+    private func setupTitleLabelConstraints() {
+        NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 18),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
+    }
+
+    //MARK: - setupDescriptionLabelConstraints
+    private func setupDescriptionLabelConstraints() {
+        NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 18),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
+    }
+
+    //MARK: - setupFactorsLabelConstraints
+    private func setupFactorsLabelConstraints() {
+        NSLayoutConstraint.activate([
             factorsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 18),
             factorsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            factorsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
+            factorsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
+    }
+
+    //MARK: - setupTemperatureConstraints
+    private func setupTemperatureConstraints() {
+        NSLayoutConstraint.activate([
             temperatureImageView.topAnchor.constraint(equalTo: factorsLabel.bottomAnchor, constant: 11),
             temperatureImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             temperatureImageView.widthAnchor.constraint(equalToConstant: 30),
             temperatureImageView.heightAnchor.constraint(equalToConstant: 30),
             
             temperatureLabel.centerYAnchor.constraint(equalTo: temperatureImageView.centerYAnchor),
-            temperatureLabel.leadingAnchor.constraint(equalTo: temperatureImageView.trailingAnchor, constant: 8),
-            
+            temperatureLabel.leadingAnchor.constraint(equalTo: temperatureImageView.trailingAnchor, constant: 8)
+        ])
+    }
+
+    //MARK: - setupHumidityConstraints
+    private func setupHumidityConstraints() {
+        NSLayoutConstraint.activate([
             humidityImageView.topAnchor.constraint(equalTo: temperatureImageView.bottomAnchor, constant: 11),
             humidityImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             humidityImageView.widthAnchor.constraint(equalToConstant: 30),
             humidityImageView.heightAnchor.constraint(equalToConstant: 30),
             
             humidityLabel.centerYAnchor.constraint(equalTo: humidityImageView.centerYAnchor),
-            humidityLabel.leadingAnchor.constraint(equalTo: humidityImageView.trailingAnchor, constant: 8),
-            
+            humidityLabel.leadingAnchor.constraint(equalTo: humidityImageView.trailingAnchor, constant: 8)
+        ])
+    }
+
+    //MARK: - setupWindConstraints
+    private func setupWindConstraints() {
+        NSLayoutConstraint.activate([
             windImageView.topAnchor.constraint(equalTo: humidityImageView.bottomAnchor, constant: 11),
             windImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             windImageView.widthAnchor.constraint(equalToConstant: 30),
             windImageView.heightAnchor.constraint(equalToConstant: 30),
-            windLabel.centerYAnchor.constraint(equalTo: windImageView.centerYAnchor),
-            windLabel.leadingAnchor.constraint(equalTo: windImageView.trailingAnchor, constant: 8),
             
+            windLabel.centerYAnchor.constraint(equalTo: windImageView.centerYAnchor),
+            windLabel.leadingAnchor.constraint(equalTo: windImageView.trailingAnchor, constant: 8)
+        ])
+    }
+
+    //MARK: - setupTipsConstraints
+    private func setupTipsConstraints() {
+        NSLayoutConstraint.activate([
             tipsLabel.topAnchor.constraint(equalTo: windLabel.bottomAnchor, constant: 19),
             tipsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            tipsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
+            tipsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
+    }
+
+    //MARK: - setupReduceEnergyConstraints
+    private func setupReduceEnergyConstraints() {
+        NSLayoutConstraint.activate([
             reduceEnergyHeading.topAnchor.constraint(equalTo: tipsLabel.bottomAnchor, constant: 11),
             reduceEnergyHeading.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             reduceEnergyHeading.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             reduceEnergyLabel.topAnchor.constraint(equalTo: reduceEnergyHeading.bottomAnchor, constant: 4),
             reduceEnergyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            reduceEnergyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
+            reduceEnergyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
+    }
+
+    //MARK: - setupAvoidIdlingConstraints
+    private func setupAvoidIdlingConstraints() {
+        NSLayoutConstraint.activate([
             avoidIdlingHeading.topAnchor.constraint(equalTo: reduceEnergyLabel.bottomAnchor, constant: 11),
             avoidIdlingHeading.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             avoidIdlingHeading.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             avoidIdlingLabel.topAnchor.constraint(equalTo: avoidIdlingHeading.bottomAnchor, constant: 4),
             avoidIdlingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            avoidIdlingLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            usePublicTransportHeading.topAnchor.constraint(equalTo: avoidIdlingLabel.bottomAnchor, constant:11),
+            avoidIdlingLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
+    }
+
+    //MARK: - setupPublicTransportConstraints
+    private func setupPublicTransportConstraints() {
+        NSLayoutConstraint.activate([
+            usePublicTransportHeading.topAnchor.constraint(equalTo: avoidIdlingLabel.bottomAnchor, constant: 11),
             usePublicTransportHeading.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             usePublicTransportHeading.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             usePublicTransportLabel.topAnchor.constraint(equalTo: usePublicTransportHeading.bottomAnchor, constant: 4),
             usePublicTransportLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            usePublicTransportLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
+            usePublicTransportLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
+    }
+
+    //MARK: - setupPlantTreesConstraints
+    private func setupPlantTreesConstraints() {
+        NSLayoutConstraint.activate([
             plantTreesHeading.topAnchor.constraint(equalTo: usePublicTransportLabel.bottomAnchor, constant: 11),
             plantTreesHeading.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             plantTreesHeading.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),

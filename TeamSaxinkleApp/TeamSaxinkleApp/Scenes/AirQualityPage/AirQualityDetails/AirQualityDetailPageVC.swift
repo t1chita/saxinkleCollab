@@ -9,18 +9,19 @@ import UIKit
 
 class AirQualityDetailPageVC: UIViewController {
 
-    private var weatherView: AirQualityDetailView!
-    private var viewModel: AirQualityDetailViewModel!
+    private var weatherView: AirQualityDetailView = AirQualityDetailView()
+    private var viewModel: AirQualityDetailViewModel = AirQualityDetailViewModel()
     var airQualityData: [String: Any]?
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = AirQualityDetailViewModel()
-        weatherView = AirQualityDetailView()
         self.view = weatherView
-        
-        view.backgroundColor = .white
+        reloadData()
+    }
+    
+    //MARK: - reloadData
+    private func reloadData() {
         if let data = airQualityData {
             viewModel.updateData(with: data)
             updateUI()

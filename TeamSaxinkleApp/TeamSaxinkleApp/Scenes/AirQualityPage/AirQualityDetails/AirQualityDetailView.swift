@@ -9,7 +9,8 @@ import UIKit
 
 class AirQualityDetailView: UIView {
     
-    let locationLabel: UILabel = {
+    //MARK: - locationLabel
+        let locationLabel: UILabel = {
         let label = UILabel()
         label.text = "Los Angeles"
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
@@ -17,6 +18,7 @@ class AirQualityDetailView: UIView {
         return label
     }()
     
+    //MARK: - temperatureLabel
     let temperatureLabel: UILabel = {
         let label = UILabel()
         label.text = "82 F"
@@ -25,6 +27,7 @@ class AirQualityDetailView: UIView {
         return label
     }()
     
+    //MARK: - airQualityLabel
     let airQualityLabel: UILabel = {
         let label = UILabel()
         label.text = "Air Quality Index"
@@ -33,6 +36,7 @@ class AirQualityDetailView: UIView {
         return label
     }()
     
+    //MARK: - airQualityValueLabel
     let airQualityValueLabel: UILabel = {
         let label = UILabel()
         label.text = "Moderate"
@@ -41,6 +45,7 @@ class AirQualityDetailView: UIView {
         return label
     }()
     
+    //MARK: - airQualityProgressView
     let airQualityProgressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.progress = 0.6
@@ -48,6 +53,7 @@ class AirQualityDetailView: UIView {
         return progressView
     }()
     
+    //MARK: - airQualityIndexLabel
     let airQualityIndexLabel: UILabel = {
         let label = UILabel()
         label.text = "AQI: 61"
@@ -56,6 +62,7 @@ class AirQualityDetailView: UIView {
         return label
     }()
     
+    //MARK: - weatherStackView
     let weatherStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -64,6 +71,7 @@ class AirQualityDetailView: UIView {
         return stackView
     }()
     
+    //MARK: - temperatureDetailLabel
     let temperatureView = UIView()
     let temperatureDetailLabel: UILabel = {
         let label = UILabel()
@@ -72,6 +80,7 @@ class AirQualityDetailView: UIView {
         return label
     }()
     
+    //MARK: - windDetailLabel
     let windView = UIView()
     let windDetailLabel: UILabel = {
         let label = UILabel()
@@ -80,6 +89,7 @@ class AirQualityDetailView: UIView {
         return label
     }()
     
+    //MARK: - humidityDetailLabel
     let humidityView = UIView()
     let humidityDetailLabel: UILabel = {
         let label = UILabel()
@@ -88,6 +98,7 @@ class AirQualityDetailView: UIView {
         return label
     }()
     
+    //MARK: - pressureDetailLabel
     let pressureView = UIView()
     let pressureDetailLabel: UILabel = {
         let label = UILabel()
@@ -96,6 +107,7 @@ class AirQualityDetailView: UIView {
         return label
     }()
     
+    //MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -107,7 +119,7 @@ class AirQualityDetailView: UIView {
     
     //MARK: - setupUI
     private func setupUI() {
-        backgroundColor = .white
+        backgroundColor = .systemBackground
         
         addSubview(locationLabel)
         addSubview(temperatureLabel)
@@ -117,19 +129,13 @@ class AirQualityDetailView: UIView {
         addSubview(airQualityIndexLabel)
         addSubview(weatherStackView)
         
-        setupWeatherDetailView(view: temperatureView, imageName: "AirQualityImage1", label: temperatureDetailLabel)
-        setupWeatherDetailView(view: windView, imageName: "AirQualityImage2", label: windDetailLabel)
-        setupWeatherDetailView(view: humidityView, imageName: "AirQualityImage3", label: humidityDetailLabel)
-        setupWeatherDetailView(view: pressureView, imageName: "AirQualityImage4", label: pressureDetailLabel)
-        
-        weatherStackView.addArrangedSubview(temperatureView)
-        weatherStackView.addArrangedSubview(createSpacerView(height: 12))
-        weatherStackView.addArrangedSubview(windView)
-        weatherStackView.addArrangedSubview(createSpacerView(height: 12))
-        weatherStackView.addArrangedSubview(humidityView)
-        weatherStackView.addArrangedSubview(createSpacerView(height: 12))
-        weatherStackView.addArrangedSubview(pressureView)
+        setupWeatherView()
+        addInstackView()
+        constraintsForUi()
+    }
     
+    //MARK: - constraintsForUi
+    private func constraintsForUi() {
         NSLayoutConstraint.activate([
             locationLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             locationLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -155,6 +161,25 @@ class AirQualityDetailView: UIView {
             weatherStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             weatherStackView.bottomAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
+    }
+    
+    //MARK: - addInstackView
+    private func addInstackView() {
+        weatherStackView.addArrangedSubview(temperatureView)
+        weatherStackView.addArrangedSubview(createSpacerView(height: 12))
+        weatherStackView.addArrangedSubview(windView)
+        weatherStackView.addArrangedSubview(createSpacerView(height: 12))
+        weatherStackView.addArrangedSubview(humidityView)
+        weatherStackView.addArrangedSubview(createSpacerView(height: 12))
+        weatherStackView.addArrangedSubview(pressureView)
+    }
+    
+    //MARK: - setupWeatherView
+    private  func setupWeatherView() {
+        setupWeatherDetailView(view: temperatureView, imageName: "AirQualityImage1", label: temperatureDetailLabel)
+        setupWeatherDetailView(view: windView, imageName: "AirQualityImage2", label: windDetailLabel)
+        setupWeatherDetailView(view: humidityView, imageName: "AirQualityImage3", label: humidityDetailLabel)
+        setupWeatherDetailView(view: pressureView, imageName: "AirQualityImage4", label: pressureDetailLabel)
     }
     
     //MARK: - setupWeatherDetailView
