@@ -22,6 +22,7 @@
 		26178E732BF7A85400858EC9 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26178E722BF7A85400858EC9 /* City.swift */; };
 		26178E762BF7BFAC00858EC9 /* NatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26178E752BF7BFAC00858EC9 /* NatureCell.swift */; };
 		26178E792BF7C49700858EC9 /* ImageService in Frameworks */ = {isa = PBXBuildFile; productRef = 26178E782BF7C49700858EC9 /* ImageService */; };
+		2672833A2BF9010A00D7348F /* SpinningCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267283392BF9010A00D7348F /* SpinningCircleView.swift */; };
 		26877D852BF6C503006E1004 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26877D842BF6C503006E1004 /* TabBarController.swift */; };
 		87ED3C4D2BF777460089B01C /* SolarResourcePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87ED3C4C2BF777460089B01C /* SolarResourcePageModel.swift */; };
 		87ED3C4F2BF796170089B01C /* SolarResourcePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87ED3C4E2BF796170089B01C /* SolarResourcePageView.swift */; };
@@ -57,6 +58,7 @@
 		260735212BF6B56E005AC69D /* AirQualityPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityPageVC.swift; sourceTree = "<group>"; };
 		26178E722BF7A85400858EC9 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		26178E752BF7BFAC00858EC9 /* NatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatureCell.swift; sourceTree = "<group>"; };
+		267283392BF9010A00D7348F /* SpinningCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningCircleView.swift; sourceTree = "<group>"; };
 		26877D842BF6C503006E1004 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		87ED3C4C2BF777460089B01C /* SolarResourcePageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourcePageModel.swift; sourceTree = "<group>"; };
 		87ED3C4E2BF796170089B01C /* SolarResourcePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourcePageView.swift; sourceTree = "<group>"; };
@@ -235,6 +237,14 @@
 			path = NatureCell;
 			sourceTree = "<group>";
 		};
+		267283382BF900EC00D7348F /* SpinningCircle */ = {
+			isa = PBXGroup;
+			children = (
+				267283392BF9010A00D7348F /* SpinningCircleView.swift */,
+			);
+			path = SpinningCircle;
+			sourceTree = "<group>";
+		};
 		26877D832BF6C4E4006E1004 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +280,7 @@
 		94BC91852BF82F0400CE5D86 /* CustomUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				267283382BF900EC00D7348F /* SpinningCircle */,
 				87ED3C562BF8D92C0089B01C /* CustomSearchBar.swift */,
 				944516F02BF7E98100CA5A78 /* CustomTextField.swift */,
 				944516F22BF7E9A000CA5A78 /* CustomLabel.swift */,
@@ -390,6 +401,7 @@
 				D0F4A0F12BF6DCD1001DE35A /* PopulationPageViewModel.swift in Sources */,
 				94BC91882BF8BDEB00CE5D86 /* CustomButton.swift in Sources */,
 				2607351E2BF6B54E005AC69D /* PopulationPageVC.swift in Sources */,
+				2672833A2BF9010A00D7348F /* SpinningCircleView.swift in Sources */,
 				87ED3C572BF8D92C0089B01C /* CustomSearchBar.swift in Sources */,
 				26178E732BF7A85400858EC9 /* City.swift in Sources */,
 				260734F92BF6AED0005AC69D /* SceneDelegate.swift in Sources */,

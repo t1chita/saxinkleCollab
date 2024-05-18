@@ -31,36 +31,21 @@ class NatureCell: UITableViewCell {
         return iv
     }()
     
-    private let nameOfObjectLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        lbl.textAlignment = .center
-        lbl.textColor = .label
-        lbl.textAlignment = .left
-        lbl.numberOfLines = 0
+    private let nameOfObjectLabel: CustomLabel = {
+        let lbl = CustomLabel()
+        lbl.font = UIFont.systemFont(ofSize: 14)
         return lbl
     }()
     
-    private let nameOfDiscovererLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        lbl.textAlignment = .center
-        lbl.textColor = .label
-        lbl.textAlignment = .left
-        lbl.numberOfLines = 0
+    private let nameOfDiscovererLabel: CustomLabel = {
+        let lbl = CustomLabel()
+        lbl.font = UIFont.systemFont(ofSize: 14)
         return lbl
     }()
     
-    private let wikipediaLinkLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        lbl.textAlignment = .center
-        lbl.textColor = .label
-        lbl.textAlignment = .left
-        lbl.numberOfLines = 0
+    private let wikipediaLinkLabel: CustomLabel = {
+        let lbl = CustomLabel()
+        lbl.font = UIFont.systemFont(ofSize: 12)
         return lbl
     }()
     
@@ -72,6 +57,7 @@ class NatureCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     //MARK: Configuration
     func configure(imageUrl: String?, objectName: String?, discovererName: String?, wikipediaLink: String?) {
         ImageService.imageService.loadImageFromURL(imageUrl ?? "") { [weak self] image in
