@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
     //MARK: - Tab Setup
     
     private func setTabBar() {
-        tabBar.barTintColor = .gray
+        tabBar.backgroundColor = .systemGray5
         tabBar.tintColor = .purple
         tabBar.unselectedItemTintColor = .orange
     }
