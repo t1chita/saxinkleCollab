@@ -24,6 +24,7 @@ class SpeciePageViewModel: ViewModelLoadDelegate {
     
     //MARK: Delegates
     weak var reloadTableViewDelegate:  ReloadTableViewDelegate?
+    weak var spinningCircleViewDelegate: SpinningCircleViewDelegate?
     
     //MARK: Methods
     func didLoad(with city: String) {
@@ -38,6 +39,7 @@ class SpeciePageViewModel: ViewModelLoadDelegate {
     
     //MARK: Child Methods
     private func fetchData(cityName: String, completion: @escaping (Bool) -> Void) {
+        spinningCircleViewDelegate?.animateSpinningCircle()
         let apiForCityID = "https://api.inaturalist.org/v1/places/autocomplete?q=\(cityName)"
         NetworkService.networkService.getData(urlString: apiForCityID) { [weak self] (result: Result<City,Error>) in
             switch result {
@@ -62,6 +64,7 @@ class SpeciePageViewModel: ViewModelLoadDelegate {
             case .failure(let failure):
                 print(failure.localizedDescription)
             }
+            self?.spinningCircleViewDelegate?.stopAnimatingSpinningCircle()
             self?.reloadTableViewDelegate?.reloadData()
         }
     }

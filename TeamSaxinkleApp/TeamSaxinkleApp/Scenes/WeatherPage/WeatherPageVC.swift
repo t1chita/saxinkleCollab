@@ -30,6 +30,7 @@ final class WeatherPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        weatherPageViewModel.delegate = self
         setupUI()
     }
     
@@ -44,51 +45,22 @@ final class WeatherPageVC: UIViewController {
         
     }
     
+    // MARK: - Get Weather
     func getWeather() {
         guard let lat = weatherPageView.latitudeTextField.text, let lon = weatherPageView.longitudeTextField.text, !lat.isEmpty, !lon.isEmpty else {
             print("Please enter latitude and longitude")
             return
         }
-        getWeatherData(latitude: Double(lat) ?? 41.33, longitude: Double(lon) ?? 44.34)
-    }
-    
-    func getWeatherData(latitude: Double, longitude: Double) {
-        let urlString = "\(Constants.baseUrlString)?lat=\(latitude)&lon=\(longitude)&appid=\(Constants.apiKey)\(Constants.metricUnit)"
-        
-        NetworkService.networkService.getData(urlString: urlString) { (result: Result<WeatherPageModel, Error>) in
-            switch result {
-            case .success(let weatherModel):
-                self.groupedWeatherData = Dictionary(grouping: weatherModel.list, by: { $0.formattedDate.dayOfWeek })
-                self.forecastModel = weatherModel
-                self.dataIsLoaded = true
-                
-                DispatchQueue.main.async {
-                    self.weatherPageView.weatherDetailsTableView.reloadData()
-                    if let city = self.forecastModel?.city {
-                        self.weatherPageView.forecastLocationLabel.text = "\(city.country) - \(city.name)"
-                    }
-                }
-                
-            case .failure(let error):
-                print("Error fetching weather data: \(error)")
-            }
-        }
-    }
-    
-    func getSortedDaysOfWeek() -> [String] {
-        let dateFormatter = DateFormatter()
-        let currentDay = Calendar.current.component(.weekday, from: Date())
-        var weekdaySymbols = dateFormatter.weekdaySymbols
-        let prefixIndex = currentDay - 1
-        weekdaySymbols = Array(weekdaySymbols!.suffix(from: prefixIndex)) + Array(weekdaySymbols!.prefix(upTo: prefixIndex))
-        return weekdaySymbols!
+        weatherPageViewModel.getWeatherData(latitude: Double(lat) ?? 41.33, longitude: Double(lon) ?? 44.34)
+        dataIsLoaded = true
     }
     
 }
 
+// MARK: - Extensions
 extension WeatherPageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
+        return 10
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -96,18 +68,18 @@ extension WeatherPageVC: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataIsLoaded ? min(getSortedDaysOfWeek().count, 5) : 0
+        return dataIsLoaded ? min(weatherPageViewModel.getSortedDays().count, 5) : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sortedDays = getSortedDaysOfWeek()
+        let sortedDays = weatherPageViewModel.getSortedDays()
         let day = sortedDays[section]
         return groupedWeatherData[day]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.cellIdentifier, for: indexPath) as! CustomTableViewCell
-        let sortedDays = getSortedDaysOfWeek()
+        let sortedDays = weatherPageViewModel.getSortedDays()
         let sectionDate = sortedDays[indexPath.section]
         let weatherData = groupedWeatherData[sectionDate]?[indexPath.row]
         
@@ -122,7 +94,7 @@ extension WeatherPageVC: UITableViewDataSource {
 
 extension WeatherPageVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sortedDays = getSortedDaysOfWeek()
+        let sortedDays = weatherPageViewModel.getSortedDays()
         if section < sortedDays.count {
             return sortedDays[section]
         }
@@ -131,4 +103,20 @@ extension WeatherPageVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+extension WeatherPageVC: WeatherPageViewModelDelegate {
+    func weatherDataDidUpdate(groupedWeatherData: [String : [ListArray]], forecastModel: WeatherPageModel) {
+        self.groupedWeatherData = groupedWeatherData
+        self.forecastModel = forecastModel
+        DispatchQueue.main.async {
+            self.weatherPageView.weatherDetailsTableView.reloadData()
+            self.weatherPageView.forecastLocationLabel.text = "\(forecastModel.city.country) - \(forecastModel.city.name)"
+        }
+    }
+    
+    func weatherDataFetchFailed(with error: any Error) {
+        print("Error fetching weather data: \(error)")
+    }
+    
 }

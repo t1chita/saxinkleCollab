@@ -9,39 +9,47 @@ import Foundation
 import NetworkingService
 
 
-//protocol weatherPageProtocol {
-//    func fetchWeatherData(latitude: Double, longitude: Double)
-//}
+protocol WeatherPageViewModelDelegate: AnyObject {
+    func weatherDataDidUpdate(groupedWeatherData: [String: [ListArray]], forecastModel: WeatherPageModel)
+    func weatherDataFetchFailed(with error: Error)
+}
+
 final class WeatherPageViewModel {
-    
-    public var weatherModel: WeatherPageModel? {
-        didSet { weatherUpdated?() }
-    }
-//    public var weatherModel: WeatherPageModel?
-    var weatherUpdated: (() -> Void)?
+// MARK: - Properties
     var service = NetworkService.networkService
-
+    var groupedWeatherData: [String: [ListArray]] = [:]
+    var forecastModel: WeatherPageModel?
+    var dataIsLoaded = false
+    weak var delegate: WeatherPageViewModelDelegate?
+    
     // MARK: - LifeCycle
-
-    func viewDidLoad() {
-//        fetchWeatherData(latitude: latitude, longitude: longitude)
+    func getSortedDays() -> [String] {
+        getSortedDaysOfWeek()
     }
     
     // MARK: - fetchData
-//     func fetchWeatherData(latitude: Double, longitude: Double) {
-//        let urlString = "\(baseUrlString)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=metric"
-//                service.getData(urlString: urlString) { (result: Result<WeatherPageModel, Error>) in
-//                    switch result {
-//                    case .success(let weatherModel):
-//                        self.weatherModel = weatherModel
-//                    case .failure(let error):
-//                        print("Error fetching weather data: \(error)")
-//                    }
-//        }
-//    }
-//    
-    // MARK: - numberOfRawsInSection
-  
-//    // MARK: - cellForRawAt
-
+    func getWeatherData(latitude: Double, longitude: Double) {
+        let urlString = "\(Constants.baseUrlString)?lat=\(latitude)&lon=\(longitude)&appid=\(Constants.apiKey)\(Constants.metricUnit)"
+        
+        NetworkService.networkService.getData(urlString: urlString) { (result: Result<WeatherPageModel, Error>) in
+            switch result {
+            case .success(let weatherModel):
+                let groupedWeatherData = Dictionary(grouping: weatherModel.list, by: { $0.formattedDate.dayOfWeek })
+                self.delegate?.weatherDataDidUpdate(groupedWeatherData: groupedWeatherData, forecastModel: weatherModel)
+                
+            case .failure(let error):
+                self.delegate?.weatherDataFetchFailed(with: error)
+            }
+        }
+    }
+    // MARK: - SortDays
+    private func getSortedDaysOfWeek() -> [String] {
+        let dateFormatter = DateFormatter()
+        let currentDay = Calendar.current.component(.weekday, from: Date())
+        var weekdaySymbols = dateFormatter.weekdaySymbols
+        let prefixIndex = currentDay - 1
+        weekdaySymbols = Array(weekdaySymbols!.suffix(from: prefixIndex)) + Array(weekdaySymbols!.prefix(upTo: prefixIndex))
+        return weekdaySymbols!
+    }
 }
+

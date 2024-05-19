@@ -10,20 +10,11 @@ import UIKit
 class PopulationPageView: UIView {
     
     // MARK: - UI Components
+   
     
-    let countryDataLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Country Data"
-        label.font = UIFont.boldSystemFont(ofSize: 38)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let countryTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter country name"
-        textField.borderStyle = .roundedRect
-        textField.translatesAutoresizingMaskIntoConstraints = false
+    let countryTextField: CustomTextField = {
+        let textField = CustomTextField()
+        textField.attributedPlaceholder = NSAttributedString(string:"Enter Country Name")
         return textField
     }()
     
@@ -37,34 +28,31 @@ class PopulationPageView: UIView {
         return button
     }()
     
-    let todaysPopulationLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Today's population"
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+     let todaysPopulationLabel: CustomLabel = {
+         let title = CustomLabel()
+         title.text = "Today's population"
+         return title
+     }()
+
     
-    let todaysPopulationValueLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Population:"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    let todaysPopulationValueLabel: CustomLabel = {
+        let title = CustomLabel()
+        title.text = "Population:"
+        return title
     }()
+
     
-    let tomorrowsPopulationLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Tomorrow's population"
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    let tomorrowsPopulationLabel: CustomLabel = {
+        let title = CustomLabel()
+        title.text = "Tomorrow's population:"
+        return title
     }()
+
     
-    let tomorrowsPopulationValueLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Population:"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    let tomorrowsPopulationValueLabel: CustomLabel = {
+        let title = CustomLabel()
+        title.text = "Population"
+        return title
     }()
     
     private lazy var fetchStackView: UIStackView = {
@@ -104,15 +92,12 @@ class PopulationPageView: UIView {
     // MARK: - UI Setup
     
     private func setupUI() {
-        addSubview(countryDataLabel)
         addSubview(fetchStackView)
         addSubview(populationStackView)
         
         NSLayoutConstraint.activate([
-            countryDataLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
-            countryDataLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            fetchStackView.topAnchor.constraint(equalTo: countryDataLabel.bottomAnchor, constant: 20),
+            fetchStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             fetchStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             fetchStackView.heightAnchor.constraint(equalToConstant: 100),
             fetchStackView.widthAnchor.constraint(equalToConstant: 250),
