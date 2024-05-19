@@ -9,7 +9,7 @@
 
 import UIKit
 
-class PopulationPageVC: UIViewController {
+final class PopulationPageVC: UIViewController {
     
     // MARK: - Properties
     
@@ -48,7 +48,6 @@ class PopulationPageVC: UIViewController {
             presentAlert(title: "არიქცევი სწორად", message: "შეიყვანე  ქვეყანა!!!!!!!.")
             return
         }
-        
         viewModel.fetchPopulation(for: country)
     }
     

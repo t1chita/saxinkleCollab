@@ -7,46 +7,42 @@
 
 import UIKit
 
-class AirQualityDetailView: UIView {
+final class AirQualityDetailView: UIView {
     
     //MARK: - locationLabel
-        let locationLabel: UILabel = {
-        let label = UILabel()
+    let locationLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Los Angeles"
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     //MARK: - temperatureLabel
-    let temperatureLabel: UILabel = {
-        let label = UILabel()
+     let temperatureLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "82 F"
         label.font = UIFont.systemFont(ofSize: 48, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     //MARK: - airQualityLabel
-    let airQualityLabel: UILabel = {
-        let label = UILabel()
+     let airQualityLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Air Quality Index"
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     //MARK: - airQualityValueLabel
-    let airQualityValueLabel: UILabel = {
-        let label = UILabel()
+     let airQualityValueLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Moderate"
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     //MARK: - airQualityProgressView
-    let airQualityProgressView: UIProgressView = {
+     let airQualityProgressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.progress = 0.6
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,16 +50,15 @@ class AirQualityDetailView: UIView {
     }()
     
     //MARK: - airQualityIndexLabel
-    let airQualityIndexLabel: UILabel = {
-        let label = UILabel()
+     let airQualityIndexLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "AQI: 61"
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
     //MARK: - weatherStackView
-    let weatherStackView: UIStackView = {
+    private let weatherStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 20
@@ -72,38 +67,34 @@ class AirQualityDetailView: UIView {
     }()
     
     //MARK: - temperatureDetailLabel
-    let temperatureView = UIView()
-    let temperatureDetailLabel: UILabel = {
-        let label = UILabel()
+    private let temperatureView = UIView()
+    private let temperatureDetailLabel: CustomLabel = {
+        let label = CustomLabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .regular)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     //MARK: - windDetailLabel
-    let windView = UIView()
-    let windDetailLabel: UILabel = {
-        let label = UILabel()
+    private let windView = UIView()
+    private let windDetailLabel: CustomLabel = {
+        let label = CustomLabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .regular)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     //MARK: - humidityDetailLabel
-    let humidityView = UIView()
-    let humidityDetailLabel: UILabel = {
-        let label = UILabel()
+    private let humidityView = UIView()
+    private let humidityDetailLabel: CustomLabel = {
+        let label = CustomLabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .regular)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     //MARK: - pressureDetailLabel
-    let pressureView = UIView()
-    let pressureDetailLabel: UILabel = {
-        let label = UILabel()
+    private let pressureView = UIView()
+    private let pressureDetailLabel: CustomLabel = {
+        let label = CustomLabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .regular)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -119,7 +110,7 @@ class AirQualityDetailView: UIView {
     
     //MARK: - setupUI
     private func setupUI() {
-        backgroundColor = .systemBackground
+        backgroundColor = .systemGray5
         
         addSubview(locationLabel)
         addSubview(temperatureLabel)
@@ -136,26 +127,60 @@ class AirQualityDetailView: UIView {
     
     //MARK: - constraintsForUi
     private func constraintsForUi() {
+        setConstraintsToLocationLabel()
+        setConstraintsToTemperatureLabel()
+        setConstraintsToAirQualityLabel()
+        setConstraintsToAirQualityValueLabel()
+        setConstraintsToAirQualityProgressView()
+        setConstraintsToAirQualityIndexLabel()
+        setConstraintsToWeatherStackView()
+    }
+    
+    private func setConstraintsToLocationLabel() {
         NSLayoutConstraint.activate([
             locationLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             locationLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
+        ])
+    } 
+    
+    private func setConstraintsToTemperatureLabel() {
+        NSLayoutConstraint.activate([
             temperatureLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 10),
             temperatureLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
+             ])
+    }
+    
+    private func setConstraintsToAirQualityLabel() {
+        NSLayoutConstraint.activate([
             airQualityLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 20),
             airQualityLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
+             ])
+    }
+    
+    private func setConstraintsToAirQualityValueLabel() {
+        NSLayoutConstraint.activate([
             airQualityValueLabel.topAnchor.constraint(equalTo: airQualityLabel.bottomAnchor, constant: 10),
             airQualityValueLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
+            ])
+    }
+    
+    private func setConstraintsToAirQualityProgressView() {
+        NSLayoutConstraint.activate([
             airQualityProgressView.topAnchor.constraint(equalTo: airQualityValueLabel.bottomAnchor, constant: 8),
             airQualityProgressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             airQualityProgressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            
+             ])
+    } 
+    
+    private func setConstraintsToAirQualityIndexLabel() {
+        NSLayoutConstraint.activate([
             airQualityIndexLabel.topAnchor.constraint(equalTo: airQualityProgressView.bottomAnchor, constant: 10),
             airQualityIndexLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
+            ])
+    }
+    
+    private func setConstraintsToWeatherStackView() {
+        NSLayoutConstraint.activate([
             weatherStackView.topAnchor.constraint(equalTo: airQualityIndexLabel.bottomAnchor, constant: 35),
             weatherStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             weatherStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),

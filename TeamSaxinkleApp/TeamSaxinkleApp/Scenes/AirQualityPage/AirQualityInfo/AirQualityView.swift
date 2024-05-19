@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AirQualityView: UIView {
+final class AirQualityView: UIView {
 
     //MARK: - UIComponents
     private let scrollView: UIScrollView = {
@@ -22,38 +22,33 @@ class AirQualityView: UIView {
         return view
     }()
     
-    let searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
+    let searchBar: CustomSearchBar = {
+        let searchBar = CustomSearchBar()
         searchBar.placeholder = "Search"
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
+    private let titleLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Air Quality"
         label.font = UIFont.boldSystemFont(ofSize: 26)
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
+    private let descriptionLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = """
         Air quality refers to the condition of the air in our surroundings. It is essential to monitor and maintain good air quality as it directly impacts our health and the environment. Factors such as industrial emissions, vehicle exhaust, and natural phenomena can contribute to poor air quality. Simple measures like reducing energy consumption, using public transport, and planting trees can help improve air quality.
         """
-        label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let factorsLabel: UILabel = {
-        let label = UILabel()
+    private let factorsLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Factors Affecting Air Quality"
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -65,11 +60,10 @@ class AirQualityView: UIView {
         return imageView
     }()
     
-    private let temperatureLabel: UILabel = {
-        let label = UILabel()
+    private let temperatureLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Temperature"
         label.font = UIFont.systemFont(ofSize: 19)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -81,11 +75,10 @@ class AirQualityView: UIView {
         return imageView
     }()
     
-    private let humidityLabel: UILabel = {
-        let label = UILabel()
+    private let humidityLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Humidity"
         label.font = UIFont.systemFont(ofSize: 19)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -97,87 +90,73 @@ class AirQualityView: UIView {
         return imageView
     }()
     
-    private let windLabel: UILabel = {
-        let label = UILabel()
+    private let windLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Wind"
         label.font = UIFont.systemFont(ofSize: 19)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let tipsLabel: UILabel = {
-        let label = UILabel()
+    private let tipsLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Tips for Improving Air Quality"
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let reduceEnergyHeading: UILabel = {
-        let label = UILabel()
+    private let reduceEnergyHeading: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Reduce Energy Consumption"
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let avoidIdlingHeading: UILabel = {
-        let label = UILabel()
+    private let avoidIdlingHeading: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Avoid Vehicle Idling"
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let usePublicTransportHeading: UILabel = {
-        let label = UILabel()
+    private let usePublicTransportHeading: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Use Public Transport"
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let plantTreesHeading: UILabel = {
-        let label = UILabel()
+    private let plantTreesHeading: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Plant Trees"
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let reduceEnergyLabel: UILabel = {
-        let label = UILabel()
+    private let reduceEnergyLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Use energy-efficient appliances and turn off electronics when not in use."
-        label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 15)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let avoidIdlingLabel: UILabel = {
-        let label = UILabel()
+    private let avoidIdlingLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Turn off your vehicle's engine when parked for more than a minute."
-        label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 15)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let usePublicTransportLabel: UILabel = {
-        let label = UILabel()
+    private let usePublicTransportLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Opt for buses, trains, or carpools to reduce individual vehicle emissions."
-        label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 15)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let plantTreesLabel: UILabel = {
-        let label = UILabel()
+    private let plantTreesLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "Trees absorb carbon dioxide and release oxygen, contributing to cleaner air."
-        label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 15)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -194,6 +173,7 @@ class AirQualityView: UIView {
     
     //MARK: - setupViews
     private func setupViews() {
+        backgroundColor = .systemGray5
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
@@ -250,7 +230,7 @@ class AirQualityView: UIView {
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -90)
         ])
     }
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AirQualityDetailPageVC: UIViewController {
+final class AirQualityDetailPageVC: UIViewController {
 
     private var weatherView: AirQualityDetailView = AirQualityDetailView()
     private var viewModel: AirQualityDetailViewModel = AirQualityDetailViewModel()

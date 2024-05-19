@@ -8,7 +8,7 @@
 import Foundation
 import NetworkingService
 
-class PopulationPageViewModel {
+final class PopulationPageViewModel {
     
     // MARK: - Properties
     

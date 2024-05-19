@@ -14,7 +14,7 @@ final class NatureCell: UITableViewCell {
     private let rectangleView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGray5
         view.clipsToBounds = true
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.label.cgColor
@@ -71,6 +71,7 @@ final class NatureCell: UITableViewCell {
     
     //MARK: - Setup UI Components
     private func setUp() {
+        backgroundColor = .systemGray5
         setRectangleView()
         setImage()
         setNameOfObjectLabel()

@@ -24,7 +24,7 @@ final class CustomVStackView: UIStackView {
         axis = .vertical
         spacing = 1
         distribution = .fillProportionally
-        backgroundColor = .systemBackground
+        backgroundColor = .systemGray5
     }
 
 }

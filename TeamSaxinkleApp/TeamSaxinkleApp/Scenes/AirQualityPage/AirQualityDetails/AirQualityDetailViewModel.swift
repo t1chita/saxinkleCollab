@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AirQualityDetailViewModel {
+final class AirQualityDetailViewModel {
     
     var location: String = "Location"
     var temperature: String = "Temperature"

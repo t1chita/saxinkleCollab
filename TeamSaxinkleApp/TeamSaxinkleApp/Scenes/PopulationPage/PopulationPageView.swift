@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopulationPageView: UIView {
+final class PopulationPageView: UIView {
     
     // MARK: - UI Components
     
@@ -76,7 +76,7 @@ class PopulationPageView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .systemBackground
+        self.backgroundColor = .systemGray5
         setupUI()
     }
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SpeciePageView: UIView {
+final class SpeciePageView: UIView {
     let spinningCircleView: SpinningCircleView = {
         let spView = SpinningCircleView()
         spView.isHidden = true
@@ -31,6 +31,7 @@ class SpeciePageView: UIView {
         let tbv = UITableView()
         tbv.separatorStyle = .none
         tbv.translatesAutoresizingMaskIntoConstraints = false
+        tbv.backgroundColor = .systemGray5
         tbv.register(NatureCell.self, forCellReuseIdentifier: NatureCell.identifier)
         return tbv
     }()
@@ -50,7 +51,7 @@ class SpeciePageView: UIView {
     
     //MARK: - Setup UI Components
     private func setUp() {
-        backgroundColor = .systemBackground
+        backgroundColor = .systemGray5
         setsearchCityBar()
         setHeaderLabel()
         setCountriesTableView()
