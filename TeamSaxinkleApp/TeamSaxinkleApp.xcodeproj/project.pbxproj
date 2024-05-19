@@ -154,7 +154,6 @@
 		2607350B2BF6B0BE005AC69D /* WeatherPage */ = {
 			isa = PBXGroup;
 			children = (
-				265DB8DF2BF9725B0020968C /* AirQualityPage */,
 				94BC91862BF82F4D00CE5D86 /* Utilities */,
 				94BC91842BF82EDC00CE5D86 /* WeatherPageCell */,
 				94BFD4CF2BF7E73C00098C90 /* WeatherPageView.swift */,
@@ -180,6 +179,7 @@
 		2607350E2BF6B0C7005AC69D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				265DB8DF2BF9725B0020968C /* AirQualityPage */,
 				2607350B2BF6B0BE005AC69D /* WeatherPage */,
 				2607350C2BF6B0C1005AC69D /* SpeciePage */,
 				2607350A2BF6B0BB005AC69D /* SolarResourcePage */,
