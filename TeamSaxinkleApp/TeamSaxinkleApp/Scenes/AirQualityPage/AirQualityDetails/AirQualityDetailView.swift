@@ -8,8 +8,7 @@
 import UIKit
 
 final class AirQualityDetailView: UIView {
-    
-    //MARK: - locationLabel
+    //MARK: - UI Components
     let locationLabel: CustomLabel = {
         let label = CustomLabel()
         label.text = "Los Angeles"
@@ -17,7 +16,6 @@ final class AirQualityDetailView: UIView {
         return label
     }()
     
-    //MARK: - temperatureLabel
      let temperatureLabel: CustomLabel = {
         let label = CustomLabel()
         label.text = "82 F"
@@ -25,7 +23,6 @@ final class AirQualityDetailView: UIView {
         return label
     }()
     
-    //MARK: - airQualityLabel
      let airQualityLabel: CustomLabel = {
         let label = CustomLabel()
         label.text = "Air Quality Index"
@@ -33,7 +30,6 @@ final class AirQualityDetailView: UIView {
         return label
     }()
     
-    //MARK: - airQualityValueLabel
      let airQualityValueLabel: CustomLabel = {
         let label = CustomLabel()
         label.text = "Moderate"
@@ -41,7 +37,6 @@ final class AirQualityDetailView: UIView {
         return label
     }()
     
-    //MARK: - airQualityProgressView
      let airQualityProgressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.progress = 0.6
@@ -49,7 +44,6 @@ final class AirQualityDetailView: UIView {
         return progressView
     }()
     
-    //MARK: - airQualityIndexLabel
      let airQualityIndexLabel: CustomLabel = {
         let label = CustomLabel()
         label.text = "AQI: 61"
@@ -57,7 +51,6 @@ final class AirQualityDetailView: UIView {
         return label
     }()
     
-    //MARK: - weatherStackView
     private let weatherStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -66,7 +59,6 @@ final class AirQualityDetailView: UIView {
         return stackView
     }()
     
-    //MARK: - temperatureDetailLabel
     private let temperatureView = UIView()
     private let temperatureDetailLabel: CustomLabel = {
         let label = CustomLabel()
@@ -74,7 +66,6 @@ final class AirQualityDetailView: UIView {
         return label
     }()
     
-    //MARK: - windDetailLabel
     private let windView = UIView()
     private let windDetailLabel: CustomLabel = {
         let label = CustomLabel()
@@ -82,7 +73,6 @@ final class AirQualityDetailView: UIView {
         return label
     }()
     
-    //MARK: - humidityDetailLabel
     private let humidityView = UIView()
     private let humidityDetailLabel: CustomLabel = {
         let label = CustomLabel()
@@ -90,7 +80,6 @@ final class AirQualityDetailView: UIView {
         return label
     }()
     
-    //MARK: - pressureDetailLabel
     private let pressureView = UIView()
     private let pressureDetailLabel: CustomLabel = {
         let label = CustomLabel()

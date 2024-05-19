@@ -8,7 +8,7 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
-    
+    //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabBar()
@@ -16,7 +16,6 @@ final class TabBarController: UITabBarController {
     }
     
     //MARK: - Tab Setup
-    
     private func setTabBar() {
         tabBar.backgroundColor = .systemGray5
         tabBar.tintColor = .purple
@@ -24,16 +23,18 @@ final class TabBarController: UITabBarController {
     }
     
     private func setupTabs() {
-        let airQuality = self.createNav(with: "Air Quality", and: .airQuality, vc: AirQualityPageVC())
+        let airQualityVC = AirQualityPageVC(airQualityView: AirQualityView(), viewModel: AirQualityViewModel())
+        let airQuality = self.createNav(with: "Air Quality", and: .airQuality, vc: airQualityVC)
         
         let weather = self.createNav(with: "Weather", and: .weather, vc: WeatherPageVC())
         
-        let speciePage = self.createNav(with: "Discoveries", and: .exploreSpecies, vc: SpeciePageVC())
-        
+        let speciePageVC = SpeciePageVC(speciePageView: SpeciePageView(), speciePageViewModel: SpeciePageViewModel())
+        let speciePage = self.createNav(with: "Discoveries", and: .exploreSpecies, vc: speciePageVC)
+
         let solarEnergy = self.createNav(with: "Solar Energy", and: .solarEnergy, vc: SolarResourcePageVC())
         
-        let population = self.createNav(with: "Population", and: .population, vc: PopulationPageVC())
-        
+        let populationVC = PopulationPageVC(viewModel: PopulationPageViewModel(), populationView: PopulationPageView())
+        let population = self.createNav(with: "Population", and: .population, vc: populationVC)
         setViewControllers([airQuality,weather,speciePage,solarEnergy,population], animated: true)
     }
     

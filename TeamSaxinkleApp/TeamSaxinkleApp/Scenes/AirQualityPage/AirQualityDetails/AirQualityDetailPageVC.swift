@@ -9,9 +9,19 @@ import UIKit
 
 final class AirQualityDetailPageVC: UIViewController {
 
-    private var weatherView: AirQualityDetailView = AirQualityDetailView()
-    private var viewModel: AirQualityDetailViewModel = AirQualityDetailViewModel()
+    private var weatherView: AirQualityDetailView
+    private var viewModel: AirQualityDetailViewModel
     var airQualityData: [String: Any]?
+    
+    init(weatherView: AirQualityDetailView, viewModel: AirQualityDetailViewModel, airQualityData: [String : Any]? = nil) {
+        self.weatherView = weatherView
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {

@@ -15,11 +15,24 @@ protocol SpinningCircleViewDelegate: AnyObject {
     func animateSpinningCircle()
     func stopAnimatingSpinningCircle()
 }
+protocol AlertDelegate: AnyObject {
+    func presentAlert()
+}
 
 final class SpeciePageVC: UIViewController {
     //MARK: Properties-
-    let speciePageView = SpeciePageView()
-    let speciePageViewModel = SpeciePageViewModel()
+    let speciePageView: SpeciePageView
+    let speciePageViewModel: SpeciePageViewModel
+    
+    init(speciePageView: SpeciePageView, speciePageViewModel: SpeciePageViewModel) {
+        self.speciePageView = speciePageView
+        self.speciePageViewModel = speciePageViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         view = speciePageView
@@ -35,6 +48,7 @@ final class SpeciePageVC: UIViewController {
     private func getDelegatesFromViewAndViewModel() {
         speciePageViewModel.reloadTableViewDelegate = speciePageView
         speciePageViewModel.spinningCircleViewDelegate = self
+        speciePageViewModel.alertDelegate = self
         speciePageView.natureTableView.dataSource = self
     }
     
@@ -44,7 +58,17 @@ final class SpeciePageVC: UIViewController {
     }
 }
 
+//MARK: Handle AlertAction
+extension SpeciePageVC: AlertDelegate {
+     func presentAlert() {
+        let alertController = UIAlertController(title: "არასწორი ინფო", message: "გაჩე ბიჭო,თავიდან!", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "ბოდიში", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+}
 
+//MARK: Handle Spinning Circle
 extension SpeciePageVC: SpinningCircleViewDelegate {
     func animateSpinningCircle() {
         speciePageView.spinningCircleView.animate()

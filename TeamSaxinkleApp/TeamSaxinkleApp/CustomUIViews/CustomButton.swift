@@ -40,7 +40,6 @@ final class CustomButton: UIButton {
     }
     
     func configureButton() {
-        
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemGray
         isEnabled = true

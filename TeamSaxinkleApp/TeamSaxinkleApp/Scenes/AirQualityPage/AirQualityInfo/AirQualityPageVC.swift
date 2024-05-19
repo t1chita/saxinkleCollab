@@ -9,8 +9,19 @@ import UIKit
 
 final class AirQualityPageVC: UIViewController, UISearchBarDelegate {
     
-    private var airQualityView: AirQualityView = AirQualityView()
-    private var viewModel: AirQualityViewModel = AirQualityViewModel()
+    private var airQualityView: AirQualityView
+    private var viewModel: AirQualityViewModel
+    
+    
+    init(airQualityView: AirQualityView, viewModel: AirQualityViewModel) {
+        self.airQualityView = airQualityView
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -39,7 +50,7 @@ final class AirQualityPageVC: UIViewController, UISearchBarDelegate {
     
     //MARK: navigateToWeatherViewController
     private func navigateToWeatherViewController(with data: [String: Any]) {
-        let weatherViewController = AirQualityDetailPageVC()
+        let weatherViewController = AirQualityDetailPageVC(weatherView: AirQualityDetailView(), viewModel: AirQualityDetailViewModel())
         weatherViewController.airQualityData = data
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }

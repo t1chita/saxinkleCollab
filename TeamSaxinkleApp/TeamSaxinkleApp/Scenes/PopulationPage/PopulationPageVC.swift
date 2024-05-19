@@ -13,8 +13,18 @@ final class PopulationPageVC: UIViewController {
     
     // MARK: - Properties
     
-    private var viewModel = PopulationPageViewModel()
-    private var populationView = PopulationPageView()
+    private var viewModel: PopulationPageViewModel
+    private var populationView: PopulationPageView
+    
+    init(viewModel: PopulationPageViewModel, populationView: PopulationPageView) {
+        self.viewModel = viewModel
+        self.populationView = populationView
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Life Cycle
     

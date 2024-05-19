@@ -17,7 +17,7 @@ struct City: Decodable {
     }
 }
 
-//MARK: Struct For Plants And Animals/Birds
+//MARK: Struct For Plants And Animals
 struct NatureInfo: Decodable {
     let results: [NatureResults]
 }

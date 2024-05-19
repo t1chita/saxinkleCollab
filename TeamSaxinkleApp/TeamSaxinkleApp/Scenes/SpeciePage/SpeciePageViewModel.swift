@@ -25,6 +25,7 @@ final class SpeciePageViewModel: ViewModelLoadDelegate {
     //MARK: Delegates
     weak var reloadTableViewDelegate:  ReloadTableViewDelegate?
     weak var spinningCircleViewDelegate: SpinningCircleViewDelegate?
+    weak var alertDelegate: AlertDelegate?
     
     //MARK: Methods
     func didLoad(with city: String) {
@@ -49,6 +50,7 @@ final class SpeciePageViewModel: ViewModelLoadDelegate {
                     completion(true)
                 } else  {
                     self?.spinningCircleViewDelegate?.stopAnimatingSpinningCircle()
+                    self?.alertDelegate?.presentAlert()
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
