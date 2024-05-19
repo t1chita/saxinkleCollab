@@ -13,5 +13,4 @@ struct Constants {
     static let apiKey = "f85f73a76a70699a5b4b531a115e1e99"
     static let metricUnit = "&units=metric"
     static let networkingService = NetworkService.networkService
-    //    static let urlString = "https://api.openweathermap.org/data/2.5/forecast?lat=41.6938&lon=44.8015&appid=f85f73a76a70699a5b4b531a115e1e99&units=metric"
 }
