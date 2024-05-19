@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AirQualityViewModel {
+final class AirQualityViewModel {
 
     var airQualityData: (([String: Any]) -> Void)?
     var apiError: ((Error) -> Void)?

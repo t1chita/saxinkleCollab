@@ -55,7 +55,7 @@ final class WeatherPageView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.cellIdentifier)
         view.separatorStyle = .none
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGray5
         view.clipsToBounds = true
         return view
     }()
@@ -71,6 +71,7 @@ final class WeatherPageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        backgroundColor = .systemGray5
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -16,6 +16,7 @@ final class CustomTableViewCell: UITableViewCell {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.layer.cornerRadius = 25
         containerView.layer.masksToBounds = true
+        containerView.backgroundColor = .systemGray5
         containerView.layer.borderColor = UIColor.label.cgColor
         containerView.layer.borderWidth = 1.0
         containerView.backgroundColor = .tertiarySystemFill
@@ -50,7 +51,6 @@ final class CustomTableViewCell: UITableViewCell {
     // MARK: - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .systemBackground
         setupUI()
     }
     
@@ -63,7 +63,7 @@ final class CustomTableViewCell: UITableViewCell {
     // MARK: - setupUI
     func setupUI() {
         selectionStyle = .none
-        backgroundColor = .systemBackground
+        backgroundColor = .systemGray5
         addSubview(containerView)
         containerView.addSubview(currentTime)
         containerView.addSubview(iconView)

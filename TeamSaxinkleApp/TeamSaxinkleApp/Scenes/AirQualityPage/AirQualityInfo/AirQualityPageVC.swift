@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AirQualityPageVC: UIViewController, UISearchBarDelegate {
+final class AirQualityPageVC: UIViewController, UISearchBarDelegate {
     
     private var airQualityView: AirQualityView = AirQualityView()
     private var viewModel: AirQualityViewModel = AirQualityViewModel()
@@ -17,7 +17,6 @@ class AirQualityPageVC: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         self.view = airQualityView
         
-        view.backgroundColor = .systemBackground
         airQualityView.searchBar.delegate = self
         
         viewModel.airQualityData = { [weak self] data in
