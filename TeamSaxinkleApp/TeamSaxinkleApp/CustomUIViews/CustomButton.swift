@@ -42,8 +42,7 @@ final class CustomButton: UIButton {
     func configureButton() {
         
         translatesAutoresizingMaskIntoConstraints = false
-        //        setTitleColor(.white, for: .normal)
-        backgroundColor = .blue
+        backgroundColor = .systemGray
         isEnabled = true
         layer.cornerRadius = 20
         sizeToFit()

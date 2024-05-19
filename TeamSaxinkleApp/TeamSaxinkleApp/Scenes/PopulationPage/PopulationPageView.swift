@@ -10,21 +10,22 @@ import UIKit
 class PopulationPageView: UIView {
     
     // MARK: - UI Components
-   
     
     let countryTextField: CustomTextField = {
         let textField = CustomTextField()
         textField.attributedPlaceholder = NSAttributedString(string:"Enter Country Name")
         return textField
     }()
+ 
     
-    let fetchButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Fetch Population", for: .normal)
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 10
-        button.tintColor = .white
-        button.translatesAutoresizingMaskIntoConstraints = false
+    let fetchButton: CustomButton = {
+        let button = CustomButton()
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont.systemFont(ofSize: 16, weight: .bold)
+        ]
+        let attributedTitle = NSAttributedString(string: "Fetch Population", attributes: attributes)
+        button.setAttributedTitle(attributedTitle, for: .normal)
         return button
     }()
     
@@ -54,34 +55,28 @@ class PopulationPageView: UIView {
         title.text = "Population"
         return title
     }()
-    
-    private lazy var fetchStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [countryTextField, fetchButton])
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
+   
+    private lazy var fetchStackView: CustomVStackView = {
+        let view = CustomVStackView(arrangedSubviews: [countryTextField,fetchButton])
+        view.spacing = 10
+        view.distribution = .fillEqually
+        return view
     }()
     
-    private lazy var populationStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            todaysPopulationLabel, todaysPopulationValueLabel,
-            tomorrowsPopulationLabel, tomorrowsPopulationValueLabel
-        ])
-        stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .center
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
+    private lazy var populationStackView: CustomVStackView = {
+        let view = CustomVStackView(arrangedSubviews: [todaysPopulationLabel, todaysPopulationValueLabel,
+                                                       tomorrowsPopulationLabel, tomorrowsPopulationValueLabel])
+        view.spacing = 8
+        view.alignment = .center
+        view.distribution = .equalSpacing
+        return view
     }()
     
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = .systemBackground
         setupUI()
     }
     
