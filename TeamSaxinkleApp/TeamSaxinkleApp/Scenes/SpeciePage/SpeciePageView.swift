@@ -17,6 +17,7 @@ final class SpeciePageView: UIView {
     //MARK: - UIComponents
     private let searchCityBar: CustomSearchBar = {
         let srbar = CustomSearchBar()
+        srbar.placeholder = "Search City"
         return srbar
     }()
     
@@ -130,7 +131,12 @@ extension SpeciePageView: ReloadTableViewDelegate {
 extension SpeciePageView: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         guard let unwrappedText = searchBar.text else { return }
-        viewModelLoadDelegate?.didLoad(with: unwrappedText)
+        if unwrappedText != "" {
+            viewModelLoadDelegate?.didLoad(with: unwrappedText)
+            natureTableView.isHidden = false
+        } else {
+            natureTableView.isHidden = true
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

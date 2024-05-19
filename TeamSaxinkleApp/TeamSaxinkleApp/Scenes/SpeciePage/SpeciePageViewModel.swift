@@ -47,6 +47,8 @@ final class SpeciePageViewModel: ViewModelLoadDelegate {
                 if !success.results.isEmpty {
                     self?.cityID = success.results[0].id ?? 0
                     completion(true)
+                } else  {
+                    self?.spinningCircleViewDelegate?.stopAnimatingSpinningCircle()
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
