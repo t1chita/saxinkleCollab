@@ -11,12 +11,11 @@ import NetworkingService
 final class WeatherPageVC: UIViewController {
     
     // MARK: - Properties
-    let weatherPageView: WeatherPageView
-    let weatherPageViewModel: WeatherPageViewModel
-    var forecastModel: WeatherPageModel?
-    var groupedWeatherData: [String: [ListArray]] = [:]
-    var service = NetworkService.networkService
-    var dataIsLoaded = false
+    private let weatherPageView: WeatherPageView
+    private let weatherPageViewModel: WeatherPageViewModel
+    private var groupedWeatherData: [String: [ListArray]] = [:]
+    private var service = NetworkService.networkService
+    private var dataIsLoaded = false
     
     init() {
         self.weatherPageView = WeatherPageView()
@@ -42,7 +41,6 @@ final class WeatherPageVC: UIViewController {
         weatherPageView.searchWeatherButton.addAction(UIAction(title: "", handler: { [weak self] _ in
             self?.getWeather()
         }), for: .touchUpInside)
-        
     }
     
     // MARK: - Get Weather
@@ -54,11 +52,17 @@ final class WeatherPageVC: UIViewController {
         weatherPageViewModel.getWeatherData(latitude: Double(lat) ?? 41.33, longitude: Double(lon) ?? 44.34)
         dataIsLoaded = true
     }
-    
+    func updateWeatherData() {
+        DispatchQueue.main.async {
+            self.weatherPageView.weatherDetailsTableView.reloadData()
+            self.weatherPageView.forecastLocationLabel.text = "\(self.weatherPageViewModel.countryName) - \(self.weatherPageViewModel.cityName)"
+        }
+    }
 }
 
-// MARK: - Extensions
+// MARK: - Extensions / DataSource, Delegate
 extension WeatherPageVC: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
@@ -72,51 +76,38 @@ extension WeatherPageVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sortedDays = weatherPageViewModel.getSortedDays()
-        let day = sortedDays[section]
-        return groupedWeatherData[day]?.count ?? 0
+        return weatherPageViewModel.getRowsCount(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.cellIdentifier, for: indexPath) as! CustomTableViewCell
-        let sortedDays = weatherPageViewModel.getSortedDays()
-        let sectionDate = sortedDays[indexPath.section]
-        let weatherData = groupedWeatherData[sectionDate]?[indexPath.row]
-        
-        if let weatherData = weatherData {
-            cell.currentTime.text = weatherData.formattedDate.timeOfDay
-            cell.temperatureLabel.text = "\(weatherData.main.temp)°C"
-            cell.weatherDescriptionLabel.text = weatherData.weather[0].description
-        }
+        weatherPageViewModel.getCellConfigure(cell: cell, index: indexPath)
         return cell
     }
+    
 }
 
 extension WeatherPageVC: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sortedDays = weatherPageViewModel.getSortedDays()
-        if section < sortedDays.count {
-            return sortedDays[section]
-        }
-        return nil
+        weatherPageViewModel.getHeaderTitle(section: section)
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }
 
+// MARK: - extention of protocol
 extension WeatherPageVC: WeatherPageViewModelDelegate {
     func weatherDataDidUpdate(groupedWeatherData: [String : [ListArray]], forecastModel: WeatherPageModel) {
         self.groupedWeatherData = groupedWeatherData
-        self.forecastModel = forecastModel
-        DispatchQueue.main.async {
-            self.weatherPageView.weatherDetailsTableView.reloadData()
-            self.weatherPageView.forecastLocationLabel.text = "\(forecastModel.city.country) - \(forecastModel.city.name)"
-        }
+        self.weatherPageViewModel.forecastModel = forecastModel
+        updateWeatherData()
     }
     
     func weatherDataFetchFailed(with error: any Error) {
         print("Error fetching weather data: \(error)")
     }
-    
 }
